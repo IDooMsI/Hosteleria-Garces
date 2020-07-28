@@ -24,3 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//! vista para probar la navbar
+Route::get('/index',function ()
+{
+    return view('index');
+});

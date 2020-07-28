@@ -49839,8 +49839,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\DooM\Desktop\proyectos\hosteleria-garces\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\DooM\Desktop\proyectos\hosteleria-garces\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\lauch\OneDrive\Escritorio\Code\Proyectos\hosteleria-garces\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\lauch\OneDrive\Escritorio\Code\Proyectos\hosteleria-garces\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
