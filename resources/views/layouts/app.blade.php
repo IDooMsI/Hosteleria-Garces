@@ -11,10 +11,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -76,6 +79,25 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer id="footer" class=" bg-white footer mt-auto pt-2 pb-0 shadow-lg" style="display:block">
+            <div class="col-12 mx-auto">
+                <div class="row justify-content-around">
+                    <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-1">
+                        <img src="{{asset('/storage/logo.jpg')}}" class="w-50" alt="">
+                    </div>
+                    <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-2 order-3">
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">location_on</span><a href="https://goo.gl/maps/p5YXaMh7RQGJT1H67" class="font-weight-bold" style="color:#252457;margin-top: 2px">Cortijo los cañas 1, Rincón de la Victoria, Málaga, España.</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">alarm</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">Lunes a Viernes ||</> 9:00-14:00hs || 16:00-19:00hs</span></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">mail_outline</span><a href="mailto:hosteleriagarces@hotmail.es" class="font-weight-bold" style="color:#252457;margin-top: 2px">hosteleriagarces@hotmail.es</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">mail_outline</span><a href="cyhgarces@hotmail.com" class="font-weight-bold" style="color:#252457;margin-top: 2px">cyhgarces@hotmail.com</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">phone</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">691526643</span></div>
+                    </div>
+                    <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-3">
+                        <img src="{{asset('/storage/logo andalucia.png')}}" class="w-75" alt="">
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
