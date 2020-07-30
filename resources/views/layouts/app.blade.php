@@ -78,9 +78,6 @@
 
         <main class="py-4">
             @yield('content')
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minus atque enim ullam provident aperiam non consequuntur maxime reprehenderit, impedit repellendus asperiores quibusdam. Aliquam repudiandae suscipit aspernatur! Distinctio, consequuntur! Iusto!
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe voluptate quisquam iste natus quod earum illo accusantium blanditiis temporibus nihil non nisi quibusdam assumenda, praesentium, voluptas hic obcaecati harum autem!
         </main>
         <footer id="footer" class=" bg-white footer mt-auto pt-2 pb-0 shadow-lg" style="display:block">
             <div class="col-12 mx-auto">
