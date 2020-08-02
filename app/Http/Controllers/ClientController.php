@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -13,7 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        $vac = compact('clients');
+        return view('admin.client.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.client.create');
     }
 
     /**
