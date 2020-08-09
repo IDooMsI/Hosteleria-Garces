@@ -28,10 +28,13 @@ Route::get('/index',function ()
 });
 
 
+//! Rutas de administrador.
 
 Route::get('/admin',function()
 {
     return view('admin.index');
 })->name('admin');
 
+Route::get('/client/{id}/delete', 'ClientController@destroy')->name('client.delete');
+Route::get('/client/search', 'ClientController@search')->name('client.search');
 Route::resource('client','ClientController');

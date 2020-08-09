@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Client;
+use App\Locality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -16,7 +19,7 @@ class ClientController extends Controller
     {
         $clients = Client::all();
         $vac = compact('clients');
-        return view('admin.client.index');
+        return view('admin.client.index',$vac);
     }
 
     /**
@@ -26,7 +29,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('admin.client.create');
+        $localities = DB::table('localities')->select('*')->orderBy('name')->get();
+        $vac = compact('localities');
+        return view('admin.client.create',$vac);
     }
 
     /**
@@ -37,7 +42,32 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validator($request);
+        
+        if ($request['new-locality']) {
+            $this->localityValidator($request);
+            $newLocality = Locality::create([
+                'name' => $request['new-locality']
+                ]);
+            $locality = $newLocality->id;    
+        }else{
+            $locality = $request['locality'];
+        };
+
+        $address = Address::create([
+            'street'=>$request['street'],
+            'number'=>$request['number'],
+            'locality_id'=>$locality,
+        ]);
+
+        $client = Client::create([
+            'name' => $request['name'],
+            'lastname' => $request['lastname'],
+            'cuit' => $request['cuit'],
+            'phone' => $request['phone'],
+            'address_id'=>$address->id,
+        ]);
+        return redirect()->route('client.index')->with('notice', 'El cliente '.Ucfirst($client->name).' '. Ucfirst($client->lastname).' ha sido creado correctamente.');
     }
 
     /**
@@ -59,7 +89,10 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::find($id);
+        $localities = DB::table('localities')->select('*')->orderBy('name')->get();
+        $vac = compact('client', 'localities');
+        return view('admin.client.edit', $vac);
     }
 
     /**
@@ -71,7 +104,33 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::find($id);
+        $address = Address::find($client->address_id);
+        $locality = $address->locality_id;
+        
+        if ($request['new-locality']) {
+            $this->localityValidator($request);
+            $newLocality = Locality::create([
+                'name' => $request['new-locality']
+            ]);
+            $locality = $newLocality->id;
+        }
+        
+        $this->editValidator($request);
+        
+        $address->update([
+            'street' => $request['street'],
+            'number' => $request['number'],
+            'locality_id' => $locality, 
+        ]);
+
+        $client->update([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'cuit' => $request['cuit'],
+            'phone' => $request['phone'],
+        ]);
+        return redirect()->route('client.index')->with('notice', 'El cliente '. Ucfirst($client->name).' '. Ucfirst($client->lastname).' ha sido editado correctamente.');
     }
 
     /**
@@ -82,6 +141,76 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        $address = Address::where('id', $client['address_id']);
+        $client->delete();
+        $address->delete();
+        return redirect()->route('client.index')->with('notice', 'El cliente '.$client->name.' ha sido eliminado correctamente.');
+    }
+
+    public function validator(Request $request)
+    {
+        
+        $rules = [
+            'name' => 'required|string|max:50',
+            'lastname' => 'required|string',
+            'cuit' => 'required|numeric|unique:clients',
+            'phone' => 'required|numeric',
+            'street' => 'required|string',
+            'number' => 'required|numeric',
+        ];
+        $message = [
+            'required' => 'El campo es obligatorio',
+            'unique' => 'El Cuit ya existe en nuestra base',
+            'string' => 'El campo no puede estar vacio',
+            'numeric' => 'Solo se admiten números',
+        ];
+        return $this->validate($request, $rules, $message);
+    }
+
+    public function localityValidator(Request $request)
+    {
+
+        $rules = [
+            'new-locality' => 'unique:localities,name|string|required',
+        ];
+        $message = [
+            'unique' => 'La localidad ya existe en nuestra base',
+            'string' => 'El campo no puede estar vacio',
+            'required' => 'El campo es obligatorio',
+        ];
+        return $this->validate($request, $rules, $message);
+    }
+
+    public function editValidator(Request $request)
+    {
+        $rules = [
+            'name' => 'required|string|max:50',
+            'lastname' => 'required|string',
+            'cuit' => 'required|numeric',
+            'phone' => 'required|numeric',
+            'street' => 'required|string',
+            'number' => 'required|numeric',
+        ];
+        $message = [
+            'required' => 'El campo es obligatorio',
+            'unique' => 'El Cuit ya existe en nuestra base',
+            'string' => 'El campo no puede estar vacio',
+            'numeric' => 'Solo se admiten números',
+        ];
+        return $this->validate($request, $rules, $message);
+    }
+
+    public function search(Request $request)
+    {
+        $busqueda = $request;
+        $clients = Client::orwhere('name',$busqueda['name'])
+        ->orwhere('lastname',$busqueda['lastname'])
+        ->orwhere('cuit',$busqueda['cuit'])
+        ->orwhere('phone',$busqueda['phone'])
+        ->get();
+
+        $vac = compact('clients');
+        return view('admin.client.index', $vac);
     }
 }
