@@ -10,11 +10,11 @@
             <a href="{{route('client.create')}}"><button class="btn-admin rounded-pill w-100">Nuevo</button></a>
         </div>
     </div>
-    <form class="col-12 col-md-6 col-lg-6 mx-auto text-center" action="{{route('client.search')}}" method="get">
+    <form id="form-search" class="col-12 col-md-6 col-lg-6 mx-auto text-center" action="{{route('client.search')}}" method="get">
         @csrf
         <div class="" style="display:inline">
             <div class="col-6 mx-auto mb-2">
-                <button id="button-buscador" type="button" onclick="buscador()" class="btn-admin rounded-pill w-50 mx-auto">Buscador</button>
+                <button id="button-buscador" type="button" onclick="openBuscador()" class="btn-admin rounded-pill w-50 mx-auto">Buscador</button>
             </div>
             @if (Request::url() == route('client.search'))
             <div class="col-6 mx-auto mb-2">
@@ -24,15 +24,26 @@
         </div>
         <div id="div-buscador" class="row" style="display: none">
             <div class="col-6 mx-auto mb-2">
-                <button class="btn-admin rounded-pill w-50 mx-auto">Buscar</button>
+                <button onclick="preSubmit()" class="btn-admin rounded-pill w-50 mx-auto">Buscar</button>
             </div>
             <div class="col-6 mx-auto mb-2">
-                <button type="button" onclick="cancelBuscador()" class="btn-admin rounded-pill w-50 mx-auto">Cancelar</button>
+                <button type="button" onclick="closeBuscador()" class="btn-admin rounded-pill w-50 mx-auto">Cancelar</button>
             </div>
-            <div class="form-group col-4">
-                <input name="name" type="text" class="form-control" placeholder="Nombre">
+            <div class="form-group col-6">
+                <input id="input-search" name="search" type="text" class="form-control" placeholder="Busqueda">
             </div>
-            <div class="form-group col-4">
+            <div class="input-group col-6">
+                <select class="custom-select" name="category" id="select-search">
+                    <option value="">Buscar por...</option>
+                    <option value="name">Nombre</option>
+                    <option value="lastname">Apellido</option>
+                    <option value="cuit">Cuit</option>
+                    <option value="phone">Telefono</option>
+                    <option value="street">Calle</option>
+                    <option value="locality">Localidad</option>
+                </select>
+            </div>
+            {{-- <div class="form-group col-4">
                 <input name="lastname" type="text" class="form-control" placeholder="Apellido">
             </div>
             <div class="form-group col-4">
@@ -42,11 +53,11 @@
                 <input name="phone" type="text" class="form-control" placeholder="Telefono">
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" placeholder="Calle">
+                <input name="street" type="text" class="form-control" placeholder="Calle">
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" placeholder="Localidad">
-            </div>
+                <input name="locality" type="text" class="form-control" placeholder="Localidad">
+            </div> --}}
         </div>
     </form>
     <div class="my-2 col-12 text-center">
@@ -89,5 +100,10 @@
             @endif
         </tbody>
     </table>
+    <div class="col-12 text-center">
+        @if(Session::has('no-results'))
+        <h3 class="my-auto text-success"><strong>{{ Session::get('no-results') }}</strong></h3>
+        @endif
+    </div>
 </div>
 @endsection

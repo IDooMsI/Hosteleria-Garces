@@ -15,16 +15,33 @@ function cancelNewLocality(){
     campo.style.display = 'none'
 }
 
-function buscador(){
+function openBuscador(){
     var buscador = document.getElementById('div-buscador')
     var botonBuscador = document.getElementById('button-buscador')
     buscador.removeAttribute('style')    
     botonBuscador.style.display = 'none'
 }
 
-function cancelBuscador(){
+function closeBuscador(){
     var buscador = document.getElementById('div-buscador')
     var botonBuscador = document.getElementById('button-buscador')
     botonBuscador.removeAttribute('style')
     buscador.style.display = 'none'
 }
+
+function preSubmit(){
+    var form = document.getElementById('form-search')
+    form.onsubmit = function(){
+        var search = document.getElementById('input-search')
+        if(search.value == "") {
+            alert('El campo busqueda no puede estar vacio')
+            return false
+        }
+        var category = document.getElementById('select-search')
+        if(category.value == ""){
+            alert('Debe seleccionar una categoria en donde buscar')
+            return false
+        }
+    }
+}
+

@@ -6,6 +6,7 @@ use App\Address;
 use App\Client;
 use App\Locality;
 use Illuminate\Http\Request;
+use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
@@ -19,6 +20,7 @@ class ClientController extends Controller
     {
         $clients = Client::all();
         $vac = compact('clients');
+        session()->forget('no-results');
         return view('admin.client.index',$vac);
     }
 
@@ -43,13 +45,13 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $this->validator($request);
-        
+
         if ($request['new-locality']) {
             $this->localityValidator($request);
             $newLocality = Locality::create([
                 'name' => $request['new-locality']
                 ]);
-            $locality = $newLocality->id;    
+            $locality = $newLocality->id;
         }else{
             $locality = $request['locality'];
         };
@@ -107,7 +109,7 @@ class ClientController extends Controller
         $client = Client::find($id);
         $address = Address::find($client->address_id);
         $locality = $address->locality_id;
-        
+
         if ($request['new-locality']) {
             $this->localityValidator($request);
             $newLocality = Locality::create([
@@ -115,13 +117,13 @@ class ClientController extends Controller
             ]);
             $locality = $newLocality->id;
         }
-        
+
         $this->editValidator($request);
-        
+
         $address->update([
             'street' => $request['street'],
             'number' => $request['number'],
-            'locality_id' => $locality, 
+            'locality_id' => $locality,
         ]);
 
         $client->update([
@@ -150,7 +152,7 @@ class ClientController extends Controller
 
     public function validator(Request $request)
     {
-        
+
         $rules = [
             'name' => 'required|string|max:50',
             'lastname' => 'required|string',
@@ -203,12 +205,39 @@ class ClientController extends Controller
 
     public function search(Request $request)
     {
-        $busqueda = $request;
-        $clients = Client::orwhere('name',$busqueda['name'])
-        ->orwhere('lastname',$busqueda['lastname'])
-        ->orwhere('cuit',$busqueda['cuit'])
-        ->orwhere('phone',$busqueda['phone'])
+        $busqueda = $request['search'];
+        $clients = Client::orwhere('name',$busqueda)
+        ->orwhere('lastname',$busqueda)
+        ->orwhere('cuit',$busqueda)
+        ->orwhere('phone',$busqueda)
         ->get();
+
+        if($request['category'] == 'street'){
+            $address = Address::where('street', $busqueda)->get();
+            $clients = [];
+            foreach ($address as $key => $value) {
+                $client = Client::where('address_id',$value['id'])->get();
+                foreach ($client as $data) {
+                    $clients[] = $data;
+                }
+
+            }
+        }elseif ($request['category'] == 'locality') {
+            $locality = Locality::where('name', $busqueda)->get();
+            $address = Address::where('locality_id', $locality[0]['id'])->get();
+            $clients = [];
+            foreach ($address as $key => $value) {
+                $client = Client::where('address_id', $value['id'])->get();
+                foreach ($client as $data) {
+                   $clients[] = $data; 
+                }
+            }   
+        }
+        
+        if(count($clients) == 0){
+            $request->session()->flash('no-results', 'No hay resultados para la busqueda "'.$busqueda.'"');
+            return view('admin.client.index');
+        }
 
         $vac = compact('clients');
         return view('admin.client.index', $vac);
