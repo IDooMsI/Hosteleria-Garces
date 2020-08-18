@@ -69,7 +69,7 @@
                     </select>
                 </div>
                 <div class="form-group my-auto m-0 col-12 col-md-6 col-lg-6" style="display: inline-grid">
-                    <button class="btn-admin btn-block rounded-pill w-100" type="button" onclick="newLocality()">Agregar Localidad</button>
+                    <button class="btn btn-outline-dark btn-block rounded-pill w-100" type="button" onclick="newLocality()">Agregar Localidad</button>
                     <small class="form-text text-muted"><b>En caso de no encontrar una localidad, agreguela</b></small>
                 </div>
             </div>
@@ -80,13 +80,13 @@
                     <input name="new-locality" class="form-control" type="text" value="{{ old('new-locality') }}">
                 </div>
                 <div class="form-group m-0 col-12 col-md-6 col-lg-6" style="display: inline-grid">
-                    <button class="btn-admin btn-block rounded-pill w-100 my-auto" type="button" onclick="cancelNewLocality()">Cancelar</button>
+                    <button class="btn btn-outline-dark btn-block rounded-pill w-100 my-auto" type="button" onclick="cancelNewLocality()">Cancelar</button>
                 </div>
             </div>
         </div>
         <div id="buttons" class="text-center col-12">
-            <a href="{{route('client.store')}}"><button class="mx-2 btn-admin rounded-pill" type="submit">Agregar</button></a>
-            <a href="{{route('client.index')}}"><button class="btn-admin rounded-pill" type="button">Cancelar</button></a>
+            <a href="{{route('client.store')}}"><button class="mx-2 btn btn-outline-dark rounded-pill" type="submit">Agregar</button></a>
+            <a href="{{route('client.index')}}"><button class="btn btn-outline-dark rounded-pill" type="button">Cancelar</button></a>
         </div>
     </form>
    
