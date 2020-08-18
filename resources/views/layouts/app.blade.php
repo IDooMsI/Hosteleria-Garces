@@ -101,5 +101,6 @@
         </footer>
     </div>
     <script src="{{asset('js/choice.js') }}"></script>
+    <script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>
