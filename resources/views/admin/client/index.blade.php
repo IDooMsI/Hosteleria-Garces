@@ -7,27 +7,27 @@
     </div>
     <div class="row justify-content-center mx-auto mb-3 col-12 col-md-8 col-lg-6 col-xl-4">
         <div class="my-3 col-6 col-md-4">
-            <a href="{{route('client.create')}}"><button class="btn-admin rounded-pill w-100">Nuevo</button></a>
+            <a href="{{route('client.create')}}"><button class="btn btn-outline-dark rounded-pill w-100">Nuevo</button></a>
         </div>
     </div>
     <form id="form-search" class="col-12 col-md-6 col-lg-6 mx-auto text-center" action="{{route('client.search')}}" method="get">
         @csrf
         <div class="" style="display:inline">
             <div class="col-6 mx-auto mb-2">
-                <button id="button-buscador" type="button" onclick="openBuscador()" class="btn-admin rounded-pill w-50 mx-auto">Buscador</button>
+                <button id="button-buscador" type="button" onclick="openBuscador()" class="btn btn-outline-dark rounded-pill w-50 mx-auto">Buscador</button>
             </div>
             @if (Request::url() == route('client.search'))
             <div class="col-6 mx-auto mb-2">
-                <a href="{{ route('client.index') }}"><button type="button" id="button-buscador" class="btn-admin rounded-pill w-50 mx-auto">Mostrar Todos</button></a>
+                <a href="{{ route('client.index') }}"><button type="button" id="button-buscador" class="btn btn-outline-dark rounded-pill w-50 mx-auto">Mostrar Todos</button></a>
             </div>
             @endif
         </div>
         <div id="div-buscador" class="row" style="display: none">
             <div class="col-6 mx-auto mb-2">
-                <button onclick="preSubmit()" class="btn-admin rounded-pill w-50 mx-auto">Buscar</button>
+                <button onclick="preSubmit()" class="btn btn-outline-dark rounded-pill w-50 mx-auto">Buscar</button>
             </div>
             <div class="col-6 mx-auto mb-2">
-                <button type="button" onclick="closeBuscador()" class="btn-admin rounded-pill w-50 mx-auto">Cancelar</button>
+                <button type="button" onclick="closeBuscador()" class="btn btn-outline-dark rounded-pill w-50 mx-auto">Cancelar</button>
             </div>
             <div class="form-group col-6">
                 <input id="input-search" name="search" type="text" class="form-control" placeholder="Busqueda">
@@ -43,21 +43,6 @@
                     <option value="locality">Localidad</option>
                 </select>
             </div>
-            {{-- <div class="form-group col-4">
-                <input name="lastname" type="text" class="form-control" placeholder="Apellido">
-            </div>
-            <div class="form-group col-4">
-                <input name="cuit" type="text" class="form-control" placeholder="Cuit">
-            </div>
-            <div class="form-group col-4">
-                <input name="phone" type="text" class="form-control" placeholder="Telefono">
-            </div>
-            <div class="form-group col-4">
-                <input name="street" type="text" class="form-control" placeholder="Calle">
-            </div>
-            <div class="form-group col-4">
-                <input name="locality" type="text" class="form-control" placeholder="Localidad">
-            </div> --}}
         </div>
     </form>
     <div class="my-2 col-12 text-center">

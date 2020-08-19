@@ -4,27 +4,27 @@
     <div id="div-admin-buttons" class="row mt-3 justify-content-center">
         <div class="col-2">
             <a href="{{route('client.index')}}">
-                <button class="btn-admin rounded-pill">CLIENTES</button>
+                <button class="btn btn-outline-dark rounded-pill">CLIENTES</button>
             </a>
         </div>
         <div class="col-2">
             <a href="">
-                <button class="btn-admin rounded-pill">PROVEEDORES</button>
+                <button class="btn btn-outline-dark rounded-pill">PROVEEDORES</button>
             </a>
         </div>
         <div class="col-2">
             <a href="">
-                <button class="btn-admin rounded-pill">TRABAJOS</button>
+                <button class="btn btn-outline-dark rounded-pill">TRABAJOS</button>
             </a>
         </div>
         <div class="col-2">
             <a href="">
-                <button class="btn-admin rounded-pill">DIRECCIONES</button>
+                <button class="btn btn-outline-dark rounded-pill">DIRECCIONES</button>
             </a>
         </div>
         <div class="col-2">
             <a href="">
-                <button class="btn-admin rounded-pill">PUBLICACIONES</button>
+                <button class="btn btn-outline-dark rounded-pill">PUBLICACIONES</button>
             </a>
         </div> 
     </div>
