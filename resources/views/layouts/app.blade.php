@@ -99,5 +99,6 @@
             </div>
         </footer>
     </div>
+    <script src="{{asset('js/presupuesto.js')}}"></script>
 </body>
 </html>
