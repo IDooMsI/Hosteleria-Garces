@@ -13,8 +13,8 @@
             </a>
         </div>
         <div class="col-2">
-            <a href="">
-                <button class="btn btn-outline-dark rounded-pill">TRABAJOS</button>
+            <a href="{{ route('work.index') }}">
+                <button class="btn-admin rounded-pill">TRABAJOS</button>
             </a>
         </div>
         <div class="col-2">

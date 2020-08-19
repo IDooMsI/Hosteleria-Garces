@@ -38,3 +38,7 @@ Route::get('/admin',function()
 Route::get('/client/{id}/delete', 'ClientController@destroy')->name('client.delete');
 Route::get('/client/search', 'ClientController@search')->name('client.search');
 Route::resource('client','ClientController');
+
+Route::get('/work/{id}/delete', 'WorkController@destroy')->name('work.delete');
+Route::get('/work/search', 'WorkController@search')->name('work.search');
+Route::resource('work','WorkController');

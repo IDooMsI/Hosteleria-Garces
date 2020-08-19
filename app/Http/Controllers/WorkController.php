@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Work;
 use Illuminate\Http\Request;
 
 class WorkController extends Controller
@@ -13,7 +15,10 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $works = Work::all();
+        $vac = compact('works');
+        session()->forget('no-results');
+        return view('admin.work.index', $vac);
     }
 
     /**
@@ -23,7 +28,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        // return view('admin.work.create');
     }
 
     /**
@@ -32,9 +37,12 @@ class WorkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Client $client)
     {
-        //
+        $client = Client::find($client);
+        $work = new Work();
+
+        return redirect()->route('client.index')->with('notice', 'Se creo el trabajo N° '. $work->id . ' para el cliente ' . Ucfirst($client->name) . ' ' . Ucfirst($client->lastname));
     }
 
     /**
