@@ -21,10 +21,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-white">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
             <div class="row w-100">
                 <div class="col-6 col-md-4 col-lg-3">
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -39,7 +40,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse col-10 col-md-5 p-0 ml-auto" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto" style="font-size: 20px">
+                    <ul class="navbar-nav justify-content-end w-100" style="font-size: 20px">
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link text-center" style="color:#000" href="">Empresa</a>
                         </li>
@@ -67,7 +68,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                                @endif
+                                @endif  
                             </div>
                         </li>
                         @endauth
@@ -76,7 +77,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pb-3">
             @yield('content')
         </main>
         <footer id="footer" class=" bg-white footer mt-auto pt-2 pb-0 shadow-lg" style="display:block">
@@ -86,11 +87,11 @@
                         <img src="{{asset('/storage/logo.jpg')}}" class="w-50" alt="">
                     </div>
                     <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-2 order-3">
-                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">location_on</span><a href="https://goo.gl/maps/p5YXaMh7RQGJT1H67" class="font-weight-bold" style="color:#252457;margin-top: 2px">Cortijo los cañas 1, Rincón de la Victoria, Málaga, España.</a></div>
-                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">alarm</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">Lunes a Viernes ||</> 9:00-14:00hs || 16:00-19:00hs</span></div>
-                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">mail_outline</span><a href="mailto:hosteleriagarces@hotmail.es" class="font-weight-bold" style="color:#252457;margin-top: 2px">hosteleriagarces@hotmail.es</a></div>
-                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">mail_outline</span><a href="cyhgarces@hotmail.com" class="font-weight-bold" style="color:#252457;margin-top: 2px">cyhgarces@hotmail.com</a></div>
-                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:red">phone</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">691526643</span></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">location_on</span><a href="https://goo.gl/maps/p5YXaMh7RQGJT1H67" class="font-weight-bold" style="color:#252457;margin-top: 2px">Cortijo los cañas 1, Rincón de la Victoria, Málaga, España.</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">alarm</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">Lunes a Viernes ||</> 9:00-14:00hs || 16:00-19:00hs</span></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">mail_outline</span><a href="mailto:hosteleriagarces@hotmail.es" class="font-weight-bold" style="color:#252457;margin-top: 2px">hosteleriagarces@hotmail.es</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">mail_outline</span><a href="cyhgarces@hotmail.com" class="font-weight-bold" style="color:#252457;margin-top: 2px">cyhgarces@hotmail.com</a></div>
+                        <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">phone</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">691526643</span></div>
                     </div>
                     <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-3">
                         <img src="{{asset('/storage/logo andalucia.png')}}" class="w-75" alt="">
@@ -99,6 +100,7 @@
             </div>
         </footer>
     </div>
+    <script src="{{asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>
