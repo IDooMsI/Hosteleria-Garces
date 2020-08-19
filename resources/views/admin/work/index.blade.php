@@ -55,12 +55,12 @@
         <thead>
             <tr class="text-center">
                 <th scope="col">#</th>
-                <th scope="col">Numero</th>
+                <th scope="col">Factura</th>
                 <th scope="col">Total</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Tecnico</th>
                 <th scope="col">Cliente</th>
-                <th scope="col" colspan="1">Opciones</th>
+                <th scope="col" colspan="2">Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -68,13 +68,17 @@
             @foreach($works as $work => $data)
             <tr>
                 <th scope="row">{{$data->id}}</th>
-                <th>{{ Ucfirst($data->fc_number) }}</th>
-                <th>{{ Ucfirst($data->price) }}</th>
+                <th>{{ $data->fc_number }}</th>
+                <th>{{ $data->price }}</th>
                 <th>{{ $data->updated_at }}</th>
-                <th>{{ UcWords($data->user->name) }}</th>
+                @if($data->user)
+                    <th>{{ UcWords($data->user->name) }}</th>
+                @else
+                    <th>{{ Ucfirst('trabajo no finalizado') }}</th>
+                @endif
                 <th>{{ UcWords($data->client->name) }}</th>
-                {{-- <th><a href="{{ route('client.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th> --}}
-                <th><a href="{{ route('client.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
+                <th><a href="{{ route('work.show',['work'=>$data->id]) }}"><span class="material-icons" title="Ver">search</span></a></th>
+                <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
             </tr>
             @endforeach
             @endif

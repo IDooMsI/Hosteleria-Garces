@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Image;
 use App\Work;
 use Illuminate\Http\Request;
 
@@ -26,22 +27,18 @@ class WorkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        // return view('admin.work.create');
-    }
+    // public function create()
+    // {
+    //     // return view('admin.work.create');
+    // }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store($id)
+    public function asignee($id)
     {
         $client = Client::find($id);
         $work = Work::create([
-            'client_id'=>$client->id, 
+            'fc_number' =>'trabajo no finalizado',
+            'price'=>'trabajo no finalizado',
+            'client_id'=>$client->id,
         ]);
 
         return redirect()->route('client.index')->with('notice', 'Se creo el trabajo N° '. $work->id . ' para el cliente ' . Ucfirst($client->name) . ' ' . Ucfirst($client->lastname));
@@ -55,7 +52,11 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        //
+        $work = Work::find($id);
+        $client = Client::find($work->client_id);
+        $images = Image::where('work_id',$work->id);
+        $vac = compact('work','client','clients');
+        return view('admin.work.show',$vac);
     }
 
     /**
@@ -66,7 +67,9 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $work = Work::find($id);
+        $vac = compact('work');
+        return view('admin.work.edit',$vac);
     }
 
     /**
