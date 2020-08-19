@@ -80,7 +80,7 @@
                 <th>{{ Ucfirst($data->address->locality->name) }}</th>
                 <th><a href="{{ route('client.edit',['client'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('client.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
-                <th><a href="{{ route('work.store') }}" title="Crear trabajo"><span class="material-icons">assignment</span></a></th>
+                <th><a href="{{ route('work.store',['id'=>$data->id]) }}" title="Crear trabajo"><span class="material-icons">assignment</span></a></th>
             </tr>
             @endforeach
             @endif

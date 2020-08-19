@@ -37,10 +37,12 @@ class WorkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Client $client)
+    public function store($id)
     {
-        $client = Client::find($client);
-        $work = new Work();
+        $client = Client::find($id);
+        $work = Work::create([
+            'client_id'=>$client->id, 
+        ]);
 
         return redirect()->route('client.index')->with('notice', 'Se creo el trabajo N° '. $work->id . ' para el cliente ' . Ucfirst($client->name) . ' ' . Ucfirst($client->lastname));
     }

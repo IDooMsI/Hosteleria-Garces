@@ -41,4 +41,5 @@ Route::resource('client','ClientController');
 
 Route::get('/work/{id}/delete', 'WorkController@destroy')->name('work.delete');
 Route::get('/work/search', 'WorkController@search')->name('work.search');
+// Route::get('work/{id}','WorkController@store')->name('work.store');
 Route::resource('work','WorkController');
