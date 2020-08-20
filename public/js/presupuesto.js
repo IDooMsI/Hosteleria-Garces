@@ -1,3 +1,4 @@
+//Al cargar la pagina se calcula el precio base y se rellena el total
 window.addEventListener('load',function(){
     var precioBase = document.getElementById('precioBase').innerHTML
     var cantidadBase = document.getElementById('cantidadBase').value
@@ -6,6 +7,8 @@ window.addEventListener('load',function(){
     inputTotal.setAttribute('value',totalBase)
 })
 
+//Calcula el parcial de cada uno de los items multiplicando la cantidad por el valor y rellena el campo
+//A su vez llama ala funcion sumarSubtotales()
 function calcularParcial(id)
 {
     var tr = document.getElementById(id)
@@ -27,6 +30,8 @@ function calcularParcial(id)
     sumarSubtotales()
 }
 
+//Captura todos los campos subtotales los guarda en un array y luego con reduce devuelve la suma de todo
+//A su vez llama a la funcion totalFinal()
 function sumarSubtotales()
 {   
     var reducer = (accumulator, currentValue) => accumulator + currentValue
@@ -40,12 +45,9 @@ function sumarSubtotales()
     totalFinal(sumaSubtotales)
 }
 
+//Suma el valor base del presupuesto + la suma de todos los subtotales y los inserta en el campo total
 function totalFinal(subtotal){
-    precioBase = document.getElementById('precioBase').innerHTML
-    cantidadBase = document.getElementById('cantidadBase').value
-    totalBase = parseInt(precioBase) * parseInt(cantidadBase)
-    var total = totalBase + subtotal
-    console.log(total)
+    total = totalBase + subtotal
     inputTotal = document.getElementById('total')
     inputTotal.setAttribute('value',total)
 }
