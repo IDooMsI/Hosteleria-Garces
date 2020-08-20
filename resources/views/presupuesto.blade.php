@@ -16,8 +16,8 @@
         <tbody>
             <tr id="{{$item->id}}">
                 <th scope="row">{{$item->id}}</th>
-                <td>{{$item->price}}€</td>
-                <td><input class="elemento-calculadora" type="number" name="" value="1" id="{{$item->id}}"></td>
+                <td><label id="precioBase" type="number" value="{{$item->price}}" readonly>{{$item->price}}</label><span>€</span></td>
+                <td><input id="cantidadBase" class="elemento-calculadora" type="number" name="" value="1" id="{{$item->id}}"></td>
                 <td>
                     <ul>
                         <li>Toma de medidas previa en caso de contratación de instalación.</li>
@@ -40,6 +40,7 @@
               <th scope="col">Código</th>
               <th scope="col">Precio</th>
               <th scope="col">Cant</th>
+              <th scope="col">Total</th>
               <th scope="col">Descripción</th>
             </thead>
     </div>
@@ -47,15 +48,16 @@
             @else
             <tr id="{{$item->id}}">
               <th scope="row"><label for="">{{$item->id}}</label> </th>
-              <th><input class="w-75"readonly value="{{$item->price}}"> €</input></th>
-              <th><input type="number" onchange="calcularParcial(this.id)" type="number" value="0" id="{{$item->id}}"></th>
+              <th><input class="w-75"readonly value="{{$item->price}}"> €</th>
+              <th><input type="number" onchange="calcularParcial(this.id)" type="number" value="" id="{{$item->id}}"></th>
+              <th><input class="subtotal" type="number" readonly value="0"></th>
               <th>{{$item->description}}</th>
             </tr>
             @endif
             @endforeach
           </tbody>
         </table>
-        <p>TOTAL: <input readonly value="0" id="total"></input></p>
+        <p>TOTAL: <input readonly value="0" id="total"></p>
       </div>
   </div>
 
