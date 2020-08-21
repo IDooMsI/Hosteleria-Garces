@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
+    <div class="col-12">
+    <h3 class="text-center">PLANTILLA MEDICIÓN AIRE ACONDICIONADO</h3>
+    </div>
     @foreach ($items as $item)
     @if ($item->id == 1)
     <table class="table table-responsive-sm table-bordered">
@@ -16,9 +19,9 @@
         <tbody>
             <tr id="{{$item->id}}">
                 <th scope="row">{{$item->id}}</th>
-                <td><label id="precioBase" type="number" value="{{$item->price}}" readonly>{{$item->price}}</label><span>€</span></td>
-                <td><input id="cantidadBase" class="elemento-calculadora" type="number" name="" value="1" id="{{$item->id}}"></td>
-                <td>
+                <th><label id="precioBase" type="number" value="{{$item->price}}" readonly>{{$item->price}}</label><span>€</span></th>
+                <th><label id="cantidadBase" id="{{$item->id}}">1</label></th>
+                <th>
                     <ul>
                         <li>Toma de medidas previa en caso de contratación de instalación.</li>
                         <li>Desmontaje y montaje de flaso techo existente.</li>
@@ -30,7 +33,7 @@
                         <li>Conexión (línea eléctrica vista con canaleta) a termostato.</li>
                         <li>Puesta en funcionamiento.</li>
                     </ul>
-                </td>
+                </th>
             </tr>
         </tbody>
     </table>  
@@ -45,20 +48,24 @@
             </thead>
     </div>
           <tbody>
+            <div class="col-12">
+              <h4 class="text-center">EXTRAS</h4>
+            </div>
             @else
             <tr id="{{$item->id}}">
               <th scope="row"><label for="">{{$item->id}}</label> </th>
-              <th><input class="w-75"readonly value="{{$item->price}}"> €</th>
+              <th><label>{{$item->price}}</label>€</th>
               <th><input type="number" onchange="calcularParcial(this.id)" type="number" value="" id="{{$item->id}}"></th>
-              <th><input class="subtotal" type="number" readonly value="0"></th>
+              <th><label class="subtotal" type="number">0</label>€</th>
               <th>{{$item->description}}</th>
             </tr>
             @endif
             @endforeach
           </tbody>
         </table>
-        <p>TOTAL: <input readonly value="0" id="total"></p>
+          <p><strong> TOTAL: <label id="total"></label>€</strong></p>
       </div>
   </div>
+  
 
   @endsection

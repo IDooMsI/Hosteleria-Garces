@@ -1,10 +1,10 @@
 //Al cargar la pagina se calcula el precio base y se rellena el total
 window.addEventListener('load',function(){
     var precioBase = document.getElementById('precioBase').innerHTML
-    var cantidadBase = document.getElementById('cantidadBase').value
+    var cantidadBase = document.getElementById('cantidadBase').innerHTML
     var totalBase = parseInt(precioBase) * parseInt(cantidadBase)
-    var inputTotal = document.getElementById('total')
-    inputTotal.setAttribute('value',totalBase)
+    labelTotal = document.getElementById('total')
+    labelTotal.innerHTML = totalBase
 })
 
 //Calcula el parcial de cada uno de los items multiplicando la cantidad por el valor y rellena el campo
@@ -14,8 +14,8 @@ function calcularParcial(id)
     var tr = document.getElementById(id)
     
     var thValor = tr.children[1]
-    var inputValor = thValor.children[0]
-    var valor = inputValor.value
+    var labelValor = thValor.children[0]
+    var valor = labelValor.innerHTML
 
     var thCantidad = tr.children[2]
     var inputCantidad = thCantidad.children[0]
@@ -24,8 +24,8 @@ function calcularParcial(id)
     var subtotal = valor*cantidad
 
     var thSubTotal = tr.children[3]
-    var inputSubTotal = thSubTotal.children[0]
-    inputSubTotal.setAttribute('value',subtotal) 
+    var labelSubTotal = thSubTotal.children[0]
+    labelSubTotal.innerHTML = subtotal 
 
     sumarSubtotales()
 }
@@ -38,7 +38,7 @@ function sumarSubtotales()
     var cuentaArray = []
     var subtotales = document.getElementsByClassName('subtotal')
     Array.from(subtotales).forEach(function(subtotal){
-        cuentaArray.push(parseInt(subtotal.value))
+        cuentaArray.push(parseInt(subtotal.innerHTML))
     })
 
     sumaSubtotales = cuentaArray.reduce(reducer)
@@ -47,7 +47,10 @@ function sumarSubtotales()
 
 //Suma el valor base del presupuesto + la suma de todos los subtotales y los inserta en el campo total
 function totalFinal(subtotal){
-    total = totalBase + subtotal
-    inputTotal = document.getElementById('total')
-    inputTotal.setAttribute('value',total)
+    precioBase = document.getElementById('precioBase').innerHTML
+    cantidadBase = document.getElementById('cantidadBase').innerHTML
+    totalBase = parseInt(precioBase) * parseInt(cantidadBase)
+    var total = totalBase + subtotal
+    labelTotal = document.getElementById('total')
+    labelTotal.innerHTML = total
 }
