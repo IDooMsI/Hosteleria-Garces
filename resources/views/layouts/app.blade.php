@@ -58,7 +58,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            @if(Auth::user()->admin == 325)
+                            @if(Auth::user()->admin == 333 || Auth::user()->tecnic == 222 )
                             <div class="dropdown-menu dropdown-menu-right text-dark bg-light" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" style="color:black !important;" href="{{route('admin')}}">Panel</a>
                                 <a class="dropdown-item" style="color:black !important;" href="{{ route('logout') }}" onclick="event.preventDefault();

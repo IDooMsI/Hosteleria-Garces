@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
-use App\Image;
-use App\Work;
 use Illuminate\Http\Request;
 
-class WorkController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +13,7 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::all();
-        $vac = compact('works');
-        session()->forget('no-results');
-        return view('admin.work.index', $vac);
+        //
     }
 
     /**
@@ -27,20 +21,20 @@ class WorkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     // return view('admin.work.create');
-    // }
-
-    public function asignee($id)
+    public function create()
     {
-        $client = Client::find($id);
-        $work = Work::create([
-            'client_id'=>$client->id,
-            'updated_at'=> false,
-        ]);
+        //
+    }
 
-        return redirect()->route('client.index')->with('notice', 'Se creo el trabajo N° '. $work->id . ' para el cliente ' . Ucfirst($client->name) . ' ' . Ucfirst($client->lastname));
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -51,11 +45,7 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        $work = Work::find($id);
-        $client = Client::find($work->client_id);
-        $images = Image::where('work_id',$work->id);
-        $vac = compact('work','client','images');
-        return view('admin.work.show',$vac);
+        //
     }
 
     /**
@@ -66,9 +56,7 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        $work = Work::find($id);
-        $vac = compact('work');
-        return view('admin.work.edit',$vac);
+        //
     }
 
     /**

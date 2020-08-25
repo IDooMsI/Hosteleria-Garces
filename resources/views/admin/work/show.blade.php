@@ -5,7 +5,7 @@
         <div class="card-header text-center">
             <h3>Datos del trabajo</h3>
         </div>
-        <table class="table">
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>Numero</th>
@@ -22,8 +22,12 @@
                     <th>{{ $work->id }}</th>
                     <th>{{ $work->fc_number }}</th>
                     <th>{{ $work->price }}</th>
-                    <th>{{ $work->created_at }}</th>        
+                    <th>{{ $work->created_at }}</th>
+                    @if($work->updated_at != $work->created_at)        
                     <th>{{ $work->updated_at }}</th>
+                    @else
+                    <th>{{ Ucfirst('trabajo no finalizado')}}</th>
+                    @endif
                     @if($work->user)
                     <th>{{ Ucfirst($work->user->name)}}</th>
                     @else
@@ -31,13 +35,12 @@
                     @endif
                     @if($work->client)
                     <th>{{ Ucfirst($work->client->name)}}</th>
-                    @else
-                    <th>{{ Ucfirst('trabajo no finalizado')}}</th>
                     @endif        
                 </tr>
             </tbody>
         </table>
     </div>
+    @if(empty($images))
     <div class="card-columns">
         <div class="card">
             @foreach ($images as $image)
@@ -45,6 +48,9 @@
             @endforeach
         </div>
     </div>
+    @endif
+    <div class="col-12 text-center">
+        <a href="{{ route('work.index') }}"><button class="btn btn-outline-dark">Volver</button></a>
+    </div>
 </div>
-
 @endsection
