@@ -3,13 +3,19 @@
 <div class="col-12">
     <div class="mx-auto text-center col-12">
         <h2>Trabajos</h2>
-        <a href="{{route('admin')}}" style="text-decoration: none; color:black"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+        @if(Auth::user()->admin == 333)
+            <a href="{{route('admin')}}" style="text-decoration: none; color:black"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+        @else
+            <a href="{{route('tecnic.index')}}" style="text-decoration: none; color:black"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+        @endif
     </div>
-    <div class="row justify-content-center mx-auto mb-3 col-12 col-md-8 col-lg-6 col-xl-4">
-        <div class="my-3 col-6 col-md-4">
-            <a href="{{route('work.create')}}"><button class="btn btn-outline-dark rounded-pill w-100">Nuevo</button></a>
+    @if(Auth::user()->admin == 333)
+        <div class="row justify-content-center mx-auto mb-3 col-12 col-md-8 col-lg-6 col-xl-4">
+            <div class="my-3 col-6 col-md-4">
+                <a href="{{route('client.index')}}"><button class="btn btn-outline-dark rounded-pill w-100">Nuevo</button></a>
+            </div>
         </div>
-    </div>
+    @endif
     <form id="form-search" class="col-12 col-md-6 col-lg-6 mx-auto text-center" action="{{route('work.search')}}" method="get">
         @csrf
         <div class="" style="display:inline">
@@ -35,10 +41,13 @@
             <div class="input-group col-6">
                 <select class="custom-select" name="category" id="select-search">
                     <option value="">Buscar por...</option>
-                    <option value="number">Numero de factura</option>
-                    <option value="date">Fecha</option>
-                    <option value="price">Total</option>
-                    <option value="user">Tecnico</option>
+                    @if(Auth::user()->admin == 333)
+                        <option value="number">Numero de factura</option>
+                        <option value="price">Total</option>
+                        <option value="user">Tecnico</option>
+                        <option value="date">Fecha</option>
+                    @endif
+                    <option value="number">Numero de trabajo</option>
                     <option value="client">Cliente</option>
                 </select>
             </div>
@@ -55,30 +64,45 @@
         <thead>
             <tr class="text-center">
                 <th scope="col">#</th>
-                <th scope="col">Factura</th>
-                <th scope="col">Total</th>
+                @if (Auth::user()->admin == 333)
+                    <th scope="col">Factura</th>
+                    <th scope="col">Total</th>
+                @endif
                 <th scope="col">Fecha</th>
                 <th scope="col">Tecnico</th>
                 <th scope="col">Cliente</th>
-                <th scope="col" colspan="2">Opciones</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
             @if (isset($works))
             @foreach($works as $work => $data)
             <tr>
-                <th scope="row">{{$data->id}}</th>
-                <th>{{ $data->fc_number }}</th>
-                <th>{{ $data->price }}</th>
-                <th>{{ $data->updated_at }}</th>
-                @if($data->user)
-                    <th>{{ UcWords($data->user->name) }}</th>
+                @if(Auth::user()->admin == 333)
+                    <th scope="row">{{$data->id}}</th>
+                    <th>{{ $data->fc_number }}</th>
+                    <th>{{ $data->price }}</th>
+                    <th>{{ $data->updated_at }}</th>
+                    @if($data->user)
+                        <th>{{ UcWords($data->user->name) }}</th>
+                    @else
+                        <th>{{ Ucfirst('trabajo no finalizado') }}</th>
+                    @endif
+                    <th>{{ UcWords($data->client->name) }}</th>
+                    <th><a href="{{ route('work.show',['work'=>$data->id]) }}"><span class="material-icons" title="Ver">search</span></a></th>
                 @else
-                    <th>{{ Ucfirst('trabajo no finalizado') }}</th>
-                @endif
-                <th>{{ UcWords($data->client->name) }}</th>
-                <th><a href="{{ route('work.show',['work'=>$data->id]) }}"><span class="material-icons" title="Ver">search</span></a></th>
-                <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
+                    @if (isset($worksToDay))
+                        @foreach ($worksToDay as $data)
+                            @if (!$data->user)
+                                <th scope="row">{{$data->id}}</th>
+                                <th>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</th>
+                                <th>{{ UcWords($data->user->name) }}</th>
+                                <th>{{ UcWords($data->client->name) }}</th>
+                                <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
+                            @endif    
+                        @endforeach
+                    @endif
+                @endif    
             </tr>
             @endforeach
             @endif

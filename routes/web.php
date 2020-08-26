@@ -29,19 +29,19 @@ Route::get('/index',function ()
 
 
 //! Rutas de administrador.
-Route::group(['middleware'=>'auth'],function(){
-    Route::get('/admin',function()
-    {
-        return view('admin.index');
-    })->name('admin');
+Route::group(['middleware'=>'admin'],function(){
+    Route::get('/admin',function(){return view('admin.index');})->name('admin');
 
     Route::get('/client/{id}/delete', 'ClientController@destroy')->name('client.delete');
     Route::get('/client/search', 'ClientController@search')->name('client.search');
     Route::resource('client','ClientController');
 
     Route::get('/work/{id}/delete', 'WorkController@destroy')->name('work.delete');
-    Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::get('work/asignee/{id}','WorkController@asignee')->name('work.asignee');
+});
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::resource('work','WorkController');
 });
 
@@ -50,3 +50,4 @@ Route::group(['middleware'=>'auth'],function(){
 Route::get('trabajo/{id}/formulario','WorkController@update')->name('work.editar');
 Route::get('reset/password','ForgotPasswordController@forgotPassword')->name('password.forgot');
 Route::post('reset/password','ForgotPasswordController@resetPassword')->name('password.reset');
+Route::get('tecnic','TecnicController@index')->name('tecnic.index');

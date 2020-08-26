@@ -53,6 +53,9 @@
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link text-center" style="color:#000" href="">Contacto</a>
                         </li>
+                        <li class="nav-item dropdown mx-3">
+                            <a class="nav-link text-center" style="color:#000" href="{{ route('login') }}">Empleados</a>
+                        </li>
                         @auth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -61,6 +64,7 @@
                             @if(Auth::user()->admin == 333 || Auth::user()->tecnic == 222 )
                             <div class="dropdown-menu dropdown-menu-right text-dark bg-light" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" style="color:black !important;" href="{{route('admin')}}">Panel</a>
+                                <a class="dropdown-item" style="color:black !important;" href="{{route('register')}}">Registrar nuevo usuario</a>
                                 <a class="dropdown-item" style="color:black !important;" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
