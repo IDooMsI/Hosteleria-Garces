@@ -63,7 +63,7 @@
                 <th scope="col">Calle</th>
                 <th scope="col">Altura</th>
                 <th scope="col">Localidad</th>
-                <th scope="col" colspan="2">Opciones</th>
+                <th scope="col" colspan="3">Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +80,7 @@
                 <th>{{ Ucfirst($data->address->locality->name) }}</th>
                 <th><a href="{{ route('client.edit',['client'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('client.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
+                <th><a href="{{ route('work.asignee',['id'=>$data->id]) }}" title="Crear trabajo"><span class="material-icons">assignment</span></a></th>
             </tr>
             @endforeach
             @endif
