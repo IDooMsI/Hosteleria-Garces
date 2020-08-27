@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Client;
 use App\Locality;
+use App\Provider;
 use Illuminate\Http\Request;
-use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
@@ -32,7 +32,8 @@ class ClientController extends Controller
     public function create()
     {
         $localities = DB::table('localities')->select('*')->orderBy('name')->get();
-        $vac = compact('localities');
+        $providers = DB::table('providers')->select('*')->orderBy('name')->get();
+        $vac = compact('localities','providers');
         return view('admin.client.create',$vac);
     }
 
@@ -56,6 +57,16 @@ class ClientController extends Controller
             $locality = $request['locality'];
         };
 
+        if ($request['new-provider']) {
+            $this->providerValidator($request);
+            $newProvider = Provider::create([
+                'name' => $request['new-provider']
+            ]);
+            $provider = $newProvider->id;
+        } else {
+            $provider = $request['provider'];
+        };
+
         $address = Address::create([
             'street'=>$request['street'],
             'number'=>$request['number'],
@@ -68,6 +79,7 @@ class ClientController extends Controller
             'cuit' => $request['cuit'],
             'phone' => $request['phone'],
             'address_id'=>$address->id,
+            'provider_id' => $provider,
         ]);
         return redirect()->route('client.index')->with('notice', 'El cliente '.Ucfirst($client->name).' '. Ucfirst($client->lastname).' ha sido creado correctamente.');
     }
@@ -93,7 +105,8 @@ class ClientController extends Controller
     {
         $client = Client::find($id);
         $localities = DB::table('localities')->select('*')->orderBy('name')->get();
-        $vac = compact('client', 'localities');
+        $providers = DB::table('providers')->select('*')->orderBy('name')->get();
+        $vac = compact('client', 'localities','providers');
         return view('admin.client.edit', $vac);
     }
 
@@ -109,6 +122,7 @@ class ClientController extends Controller
         $client = Client::find($id);
         $address = Address::find($client->address_id);
         $locality = $address->locality_id;
+        $provider = $client->provider_id;
 
         if ($request['new-locality']) {
             $this->localityValidator($request);
@@ -116,6 +130,14 @@ class ClientController extends Controller
                 'name' => $request['new-locality']
             ]);
             $locality = $newLocality->id;
+        }
+
+        if ($request['new-provider']) {
+            $this->providerValidator($request);
+            $newProvider = Provider::create([
+                'name' => $request['new-provider']
+            ]);
+            $provider = $newProvider->id;
         }
 
         $this->editValidator($request);
@@ -131,6 +153,7 @@ class ClientController extends Controller
             'lastname' => $request->input('lastname'),
             'cuit' => $request['cuit'],
             'phone' => $request['phone'],
+            'provider_id'=>$provider
         ]);
         return redirect()->route('client.index')->with('notice', 'El cliente '. Ucfirst($client->name).' '. Ucfirst($client->lastname).' ha sido editado correctamente.');
     }
@@ -154,18 +177,18 @@ class ClientController extends Controller
     {
 
         $rules = [
-            'name' => 'required|string|max:50',
-            'lastname' => 'required|string',
-            'cuit' => 'required|numeric|unique:clients',
-            'phone' => 'required|numeric',
-            'street' => 'required|string',
-            'number' => 'required|numeric',
+            'name'      => 'required|string|max:50',
+            'lastname'  => 'required|string',
+            'cuit'      => 'required|numeric|unique:clients',
+            'phone'     => 'required|numeric',
+            'street'    => 'required|string',
+            'number'    => 'required|numeric',
         ];
         $message = [
-            'required' => 'El campo es obligatorio',
-            'unique' => 'El Cuit ya existe en nuestra base',
-            'string' => 'El campo no puede estar vacio',
-            'numeric' => 'Solo se admiten números',
+            'required'  => 'El campo es obligatorio',
+            'unique'    => 'El Cuit ya existe en nuestra base',
+            'string'    => 'El campo no puede estar vacio',
+            'numeric'   => 'Solo se admiten números',
         ];
         return $this->validate($request, $rules, $message);
     }
@@ -178,6 +201,20 @@ class ClientController extends Controller
         ];
         $message = [
             'unique' => 'La localidad ya existe en nuestra base',
+            'string' => 'El campo no puede estar vacio',
+            'required' => 'El campo es obligatorio',
+        ];
+        return $this->validate($request, $rules, $message);
+    }
+
+    public function providerValidator(Request $request)
+    {
+
+        $rules = [
+            'new-provider' => 'unique:providers,name|string|required',
+        ];
+        $message = [
+            'unique' => 'La Proveedor ya existe en nuestra base',
             'string' => 'El campo no puede estar vacio',
             'required' => 'El campo es obligatorio',
         ];

@@ -90,7 +90,7 @@
                     <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-1">
                         <img src="{{asset('/storage/logo.jpg')}}" class="w-50" alt="">
                     </div>
-                    <div class="col-12 col-md-3 p-3 text-center align-self-center order-md-2 order-3">
+                    <div class="col-12 col-md-3 col-lg-6 p-3 text-center align-self-center order-md-2 order-3">
                         <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">location_on</span><a href="https://goo.gl/maps/p5YXaMh7RQGJT1H67" class="font-weight-bold" style="color:#252457;margin-top: 2px">Cortijo los cañas 1, Rincón de la Victoria, Málaga, España.</a></div>
                         <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">alarm</span><span class="font-weight-bold" style="color:#252457;margin-top: 2px">Lunes a Viernes ||</> 9:00-14:00hs || 16:00-19:00hs</span></div>
                         <div class="d-flex mb-2 justify-content-center"><span class="material-icons" style="color:#cc041c">mail_outline</span><a href="mailto:hosteleriagarces@hotmail.es" class="font-weight-bold" style="color:#252457;margin-top: 2px">hosteleriagarces@hotmail.es</a></div>

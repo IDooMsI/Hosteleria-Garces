@@ -46,7 +46,7 @@ class WorkController extends Controller
     {
         $work = Work::find($id);
         $client = Client::find($work->client_id);
-        $images = Image::where('work_id',$work->id);
+        $images = Image::where('work_id',$work->id)->get();
         $vac = compact('work','client','images');
         return view('admin.work.show',$vac);
     }

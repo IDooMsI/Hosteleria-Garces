@@ -15,6 +15,16 @@ function cancelNewLocality(){
     campo.style.display = 'none'
 }
 
+function newProvider() {
+    var campo = document.getElementById('div-new-provider')
+    campo.removeAttribute('style')
+}
+
+function cancelNewProvider() {
+    var campo = document.getElementById('div-new-provider')
+    campo.style.display = 'none'
+}
+
 function openBuscador(){
     var buscador = document.getElementById('div-buscador')
     var botonBuscador = document.getElementById('button-buscador')
