@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Calculadora;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -25,4 +23,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function showCalculadora()
+    {   
+        $items = Calculadora::all();
+        $vac = compact('items'); 
+        return view('presupuesto',$vac);
+    }
+
 }
