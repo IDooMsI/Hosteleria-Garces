@@ -28,8 +28,8 @@ Route::get('/index',function ()
 
 Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
 
-//! Rutas de administrador.
 Route::group(['middleware'=>'admin'],function(){
+    //! Rutas de administrador.
     Route::get('/admin',function(){return view('admin.index');})->name('admin');
 
     Route::get('/client/{id}/delete', 'ClientController@destroy')->name('client.delete');
@@ -46,8 +46,7 @@ Route::group(['middleware'=>'auth'],function(){
 });
 
 //! Rutas de instalador.
-
-Route::get('trabajo/{id}/formulario','WorkController@update')->name('work.editar');
-Route::get('reset/password','ForgotPasswordController@forgotPassword')->name('password.forgot');
-Route::post('reset/password','ForgotPasswordController@resetPassword')->name('password.reset');
-Route::get('tecnic','TecnicController@index')->name('tecnic.index');
+Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
+Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
+Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
+Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');
