@@ -81,5 +81,7 @@ class RegisterController extends Controller
             'admin' => $admin,
             'tecnic' => $tecnic,
         ]);
+
+        
     }
 }
