@@ -17,6 +17,11 @@
                 <button class="btn btn-outline-dark rounded-pill">PUBLICACIONES</button>
             </a>
         </div> 
+        <div class="col-6 col-md-2">
+            <a href="{{ route('calculadora.index') }}">
+                <button class="btn btn-outline-dark rounded-pill">CALCULADORA</button>
+            </a>
+        </div> 
     </div>
 </div>
 @endsection

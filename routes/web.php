@@ -38,6 +38,9 @@ Route::group(['middleware'=>'admin'],function(){
 
     Route::get('/work/{id}/delete', 'WorkController@destroy')->name('work.delete');
     Route::get('work/asignee/{id}','WorkController@asignee')->name('work.asignee');
+
+    Route::get('/calculadora/{calculadora}/delete', 'CalculadoraController@destroy')->name('calculadora.delete');
+    Route::resource('calculadora','CalculadoraController');
 });
 
 Route::group(['middleware'=>'auth'],function(){
