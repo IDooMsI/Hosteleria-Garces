@@ -14,7 +14,9 @@ class CalculadoraController extends Controller
      */
     public function index()
     {
-        //
+        $items = Calculadora::all();
+        $vac = compact('items');
+        return view('admin.calculator.index',$vac);
     }
 
     /**
@@ -24,7 +26,7 @@ class CalculadoraController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.calculator.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class CalculadoraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Calculadora::create([
+            'code' => $request['code'],
+            'price' => $request['price'],
+            'description' => $request['description'],
+        ]);
+        
+        return redirect()->route('calculadora.index')->with('notice', 'El item se agrego correctamente');
     }
 
     /**
@@ -57,7 +65,8 @@ class CalculadoraController extends Controller
      */
     public function edit(Calculadora $calculadora)
     {
-        //
+       $vac = compact('calculadora');
+       return view('admin.calculator.edit',$vac);
     }
 
     /**
@@ -69,7 +78,13 @@ class CalculadoraController extends Controller
      */
     public function update(Request $request, Calculadora $calculadora)
     {
-        //
+        $calculadora->update([
+            'code' => $request['code'],
+            'price' => $request['price'],
+            'description' => $request['description'],
+        ]);
+
+        return redirect()->route('calculadora.index')->with('notice', 'El item se modifico correctamente');
     }
 
     /**
@@ -80,6 +95,8 @@ class CalculadoraController extends Controller
      */
     public function destroy(Calculadora $calculadora)
     {
-        //
+        $calculadora->delete();
+        return redirect()->route('calculadora.index')->with('notice', 'El item se elimino correctamente');
+ 
     }
 }
