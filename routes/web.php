@@ -14,17 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/index',function ()
-{
-    return view('index');
-});
 
 Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
 
@@ -39,17 +34,17 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/work/{id}/delete', 'WorkController@destroy')->name('work.delete');
     Route::get('work/asignee/{id}','WorkController@asignee')->name('work.asignee');
 
-    Route::get('/calculadora/{calculadora}/delete', 'CalculadoraController@destroy')->name('calculadora.delete');
-    Route::resource('calculadora','CalculadoraController');
+    Route::get('/calculator/{calculator}/delete', 'CalculadoraController@destroy')->name('calculator.delete');
+    Route::resource('calculator','CalculadoraController');
+
+    //! Rutas de instalador.
+    Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
+    Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
+    Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
+    Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');
 });
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::resource('work','WorkController');
 });
-
-//! Rutas de instalador.
-Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
-Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
-Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
-Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');

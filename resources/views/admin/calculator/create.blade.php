@@ -4,7 +4,7 @@
     <div class="col-12 text-center mb-5">
         <h2>Nuevo Item</h2>
     </div>
-    <form class="col-12 mx-auto" action="{{route('calculadora.store')}}" method="post" enctype="multipart/form-data">
+    <form class="col-12 mx-auto" action="{{route('calculator.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-row text-center">
             <div class="form-group col-12 col-md-6 col-lg-4">
@@ -33,8 +33,8 @@
             </div>
         </div>
         <div id="buttons" class="text-center mt-3 col-12">
-            <a href="{{route('calculadora.store')}}"><button class="mx-2 btn btn-outline-dark rounded-pill" type="submit">Agregar</button></a>
-            <a href="{{route('calculadora.index')}}"><button class="btn btn-outline-dark rounded-pill" type="button">Cancelar</button></a>
+            <button class="mx-2 btn btn-outline-dark rounded-pill" type="submit">Agregar</button>
+            <a href="{{route('calculator.index')}}"><button class="btn btn-outline-dark rounded-pill" type="button">Cancelar</button></a>
         </div>
     </form>
 </div>

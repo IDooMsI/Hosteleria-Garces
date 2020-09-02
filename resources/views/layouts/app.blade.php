@@ -48,14 +48,11 @@
                             <a class="nav-link text-center" style="color:#000" href="">Nuestros Trabajos</a>
                         </li>
                         <li class="nav-item dropdown mx-3">
-                            <a class="nav-link text-center" style="color:#000" href="">Cotizar Trabajo</a>
+                            <a class="nav-link text-center" style="color:#000" href="{{ route('calculadora') }}">Cotizar Trabajo</a>
                         </li>
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link text-center" style="color:#000" href="">Contacto</a>
                         </li>
-                        {{-- <li class="nav-item dropdown mx-3">
-                            <a class="nav-link text-center" style="color:#000" href="{{ route('login') }}">Empleados</a>
-                        </li> --}}
                         @auth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

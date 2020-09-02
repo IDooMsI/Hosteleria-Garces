@@ -63,10 +63,11 @@ class CalculadoraController extends Controller
      * @param  \App\Calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function edit(Calculadora $calculadora)
+    public function edit($id)
     {
-       $vac = compact('calculadora');
-       return view('admin.calculator.edit',$vac);
+        $calculator = Calculadora::find($id);
+        $vac = compact('calculator');
+        return view('admin.calculator.edit',$vac);
     }
 
     /**
@@ -76,15 +77,16 @@ class CalculadoraController extends Controller
      * @param  \App\Calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Calculadora $calculadora)
+    public function update(Request $request,  $id)
     {
+        $calculadora = Calculadora::find($id);
         $calculadora->update([
             'code' => $request['code'],
             'price' => $request['price'],
             'description' => $request['description'],
         ]);
 
-        return redirect()->route('calculadora.index')->with('notice', 'El item se modifico correctamente');
+        return redirect()->route('calculator.index')->with('notice', 'El item se modifico correctamente');
     }
 
     /**
@@ -93,10 +95,11 @@ class CalculadoraController extends Controller
      * @param  \App\Calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Calculadora $calculadora)
+    public function destroy($id)
     {
+        $calculadora = Calculadora::find($id);
         $calculadora->delete();
-        return redirect()->route('calculadora.index')->with('notice', 'El item se elimino correctamente');
+        return redirect()->route('calculator.index')->with('notice', 'El item se elimino correctamente');
  
     }
 }
