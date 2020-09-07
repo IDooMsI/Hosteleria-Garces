@@ -104,5 +104,6 @@
     <script src="{{asset('js/presupuesto.js')}}"></script>
     <script src="{{asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset('js/categories.js') }}"></script>
 </body>
 </html>

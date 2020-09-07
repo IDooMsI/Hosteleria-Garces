@@ -10,7 +10,7 @@ use App\Subcategory;
 use App\SubSubcategory;
 use App\Image;
 
-class AddressController extends Controller
+class PublicationController extends Controller
 {
     /**
      * Display a listing of the resource.
