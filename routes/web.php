@@ -23,6 +23,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
 
+Route::get('/subcategories/categories/{id}',function($id){
+    return new SubcategoryResource(Subcategory::where('category_id',$id)->get()); 
+});
+
+//! Rutas de administrador.
 Route::group(['middleware'=>'admin'],function(){
     //! Rutas de administrador.
     Route::get('/admin',function(){return view('admin.index');})->name('admin');

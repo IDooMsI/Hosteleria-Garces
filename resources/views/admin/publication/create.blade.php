@@ -30,11 +30,11 @@
             </div>
                 <div class="form-group m-0 col-12 col-md-6 col-lg-4">
                     <label class="h4 pb-2" for="">Categoria</label>
-                    <select class="form-control mb-1" name="category" onchange="subcategorias()">
+                    <select class="form-control mb-1" name="category" onchange="categorias(id)">
                         <option value="">Elija una categoria</option>
                         @if(isset($categories))
                             @foreach($categories as $category)
-                                <option value="{{$category->name}}">{{Ucfirst($category->name)}}</option>
+                                <option value="{{$category->id}}">{{Ucfirst($category->name)}}</option>
                             @endforeach
                         @endif
                     </select>
@@ -47,11 +47,7 @@
                     <label class="h4 pb-2" for="">Subcategoria principal</label>
                     <select id="subcategorias" class="form-control mb-1" name="subcategory">
                         <option value="">Elija una subcategoria principal</option>
-                        @if(isset($subcategories))
-                            @foreach($subcategories as $subcategory)
-                                <option value="{{$subcategory->name}}">{{Ucfirst($subcategory->name)}}</option>
-                            @endforeach
-                        @endif
+                
                     </select>
                     <div class="form-group mt-4 col-12" style="display: inline-grid">
                         <button class="btn btn-outline-dark btn-block rounded-pill w-100" type="button" onclick="newSubcategory()">Agregar subcategoria principal</button>
@@ -62,11 +58,8 @@
                     <label class="h4 pb-2" for="">Subcategoria secundaria</label>
                     <select class="form-control mb-1" name="subsubcategory">
                         <option value="">Elija una subcategoria secundaria</option>
-                        @if(isset($subsubcategories))
-                            @foreach($subsubcategories as $subsubcategory)
-                                <option value="{{$subsubcategory->name}}">{{Ucfirst($subsubcategory->name)}}</option>
-                            @endforeach
-                        @endif
+
+                        
                     </select>
                     <div class="form-group mt-4 col-12" style="display: inline-grid">
                         <button class="btn btn-outline-dark btn-block rounded-pill w-100" type="button" onclick="newSubsubcategory()">Agregar subcategoria secundaria</button>

@@ -1,20 +1,20 @@
-function categorias(){
+function categorias(id){
     var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                var categoriasJson = JSON.parse(xhttp.responseText);
+                var subcategoriasJson = JSON.parse(xhttp.responseText);
                 var html;
                 html += "<option value='0'>Elija una Opcion</option>";
-                var selectCategorias = document.getElementById("subcategorias");
-                selectCategorias.innerHTML = html;
-                categoriasJson.categorias.forEach(function(valor , clave){
+                var selectSubcategorias = document.getElementById("subcategorias");
+                selectSubcategorias.innerHTML = html;
+                subcategoriasJson.subcategories.forEach(function(valor , clave){
                     html += "<option id='"+valor.id+"' value='" + valor.id + "'>" + valor.name + "</option>";
                 });
-                var selectCategorias = document.getElementById("subcategorias");
-                selectCategorias.innerHTML = html;
+                var selectSubcategorias = document.getElementById("subcategorias");
+                selectSubcategorias.innerHTML = html;
         };
         
     };
-    xhttp.open("GET", "https://apis.datos.gob.ar/georef/api/provincias?campos=id,nombre", true);
+    xhttp.open("GET", "localhost:8000/subcategories/categories/"+id);
     xhttp.send();
-}
+}   
