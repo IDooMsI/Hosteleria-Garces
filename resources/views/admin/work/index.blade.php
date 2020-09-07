@@ -96,7 +96,11 @@
                             @if (!$data->user)
                                 <th scope="row">{{$data->id}}</th>
                                 <th>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</th>
-                                <th>{{ UcWords($data->user->name) }}</th>
+                                <th>
+                                    @if ($data->user)
+                                        {{ UcWords($data->user->name) }}
+                                    @endif
+                                </th>
                                 <th>{{ UcWords($data->client->name) }}</th>
                                 <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                             @endif    
