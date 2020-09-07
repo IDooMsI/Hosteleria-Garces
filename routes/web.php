@@ -26,7 +26,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
 
 Route::get('/subcategories/categories/{id}',function($id){
     return new SubcategoryResource(Subcategory::where('category_id',$id)->get()); 
