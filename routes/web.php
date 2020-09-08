@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Subcategory;
+use App\SubSubcategory;
+
+use App\Http\Resources\SubcategoryCollection as SubcategoryResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +25,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
+
+Route::get('/subcategories/categories/{id}',function($id){
+    return new SubcategoryResource(Subcategory::where('category_id',$id)->get()); 
+});
 
 Route::group(['middleware'=>'admin'],function(){
     //! Rutas de administrador.
@@ -42,6 +49,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
     Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
     Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');
+    Route::resource('publication','PublicationController');
+    Route::get('/publication/{id}/delete', 'PublicationController@destroy')->name('publication.delete');
+
+
 });
 
 Route::group(['middleware'=>'auth'],function(){

@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="col-6 col-md-2">
-            <a href="">
+            <a href="{{ route('publication.index')}}">
                 <button class="btn btn-outline-dark rounded-pill">PUBLICACIONES</button>
             </a>
         </div> 
