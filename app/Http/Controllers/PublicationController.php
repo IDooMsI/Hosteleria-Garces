@@ -161,7 +161,6 @@ class PublicationController extends Controller
             $subsubcategory = $request['subsubcategory'];
         };
 
-       //! $this->validator($request);
 
         $this->createImage($request, $publication);
 
