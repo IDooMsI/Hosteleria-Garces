@@ -46,12 +46,10 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        //!$this->validator($request);
         $subcategory = NULL;
         $subsubcategory = NULL;
 
         if ($request['new-category']){
-           //! $this->categoryValidator($request);
             $newCategory = Category::create([
                 'name' => $request['new-category']
             ]);
@@ -61,7 +59,6 @@ class PublicationController extends Controller
         };
 
         if ($request['new-subcategory']){
-            //!$this->subcategoryValidator($request);
             $newSubcategory = Subcategory::create([
                 'name' => $request['new-subcategory']
             ]);
@@ -71,11 +68,10 @@ class PublicationController extends Controller
         };
 
         if ($request['new-subsubcategory']){
-            //!$this->subsubcategoryValidator($request);
             $newSubSubcategory = SubSubcategory::create([
                 'name' => $request['new-subsubcategory']
             ]);
-            $subsubcategory = $newSubsubcategory->id;
+            $subsubcategory = $newSubSubcategory->id;
         }else {
             $subsubcategory = $request['subsubcategory'];
         };
@@ -132,7 +128,6 @@ class PublicationController extends Controller
         $publication = Publication::find($id);
         
         if ($request['new-category']){
-           //! $this->categoryValidator($request);
             $newCategory = Category::create([
                 'name' => $request['new-category']
             ]);
@@ -142,7 +137,6 @@ class PublicationController extends Controller
         };
 
         if ($request['new-subcategory']){
-            //!$this->subcategoryValidator($request);
             $newSubcategory = Subcategory::create([
                 'name' => $request['new-subcategory']
             ]);
@@ -152,11 +146,10 @@ class PublicationController extends Controller
         };
 
         if ($request['new-subsubcategory']){
-            //!$this->subsubcategoryValidator($request);
             $newSubSubcategory = SubSubcategory::create([
                 'name' => $request['new-subsubcategory']
             ]);
-            $subsubcategory = $newSubsubcategory;
+            $subsubcategory = $newSubSubcategory;
         }else {
             $subsubcategory = $request['subsubcategory'];
         };

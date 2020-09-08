@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Category;
 use App\Subcategory;
 use App\SubSubcategory;
 
