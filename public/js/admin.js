@@ -1,6 +1,6 @@
 var divFooter = document.getElementById("footer");
 var url = window.location;
-if (url.href.includes("admin") || url.href.includes("client") || url.href.includes("spec") || url.href.includes("job") || url.href.includes("subcategory")){
+if (url.href.includes("admin") || url.href.includes("client") || url.href.includes("work") || url.href.includes("job") || url.href.includes("subcategory") || url.href.includes("tecnic") || url.href.includes("calculadora")){
     divFooter.style.display = "none";
 }
 
@@ -12,6 +12,16 @@ function newLocality(){
 
 function cancelNewLocality(){
     var campo = document.getElementById('div-new-category')
+    campo.style.display = 'none'
+}
+
+function newProvider() {
+    var campo = document.getElementById('div-new-provider')
+    campo.removeAttribute('style')
+}
+
+function cancelNewProvider() {
+    var campo = document.getElementById('div-new-provider')
     campo.style.display = 'none'
 }
 
@@ -43,5 +53,43 @@ function preSubmit(){
             return false
         }
     }
+    
 }
+function countChars(obj) {
+    var maxLength = 300;
+    var strLength = obj.value.length;
+    var charRemain = (maxLength - strLength);
+
+    if (charRemain < 0) {
+        document.getElementById("charNum").innerHTML = '<span style="color: red;">Has exedido el maximo de  ' + maxLength + ' caracteres</span>';
+    } else {
+        document.getElementById("charNum").innerHTML = charRemain + ' caracteres restantes';
+    }
+}
+function newCategory() {
+    var campo = document.getElementById('div-nueva-categoria')
+    campo.removeAttribute('style')
+}
+function cancelNewCategory(){
+    var campo = document.getElementById('div-nueva-categoria')
+    campo.style.display = 'none'
+}
+function newSubcategory() {
+    var campo = document.getElementById('div-nueva-subcategoria')
+    campo.removeAttribute('style')
+}
+function cancelNewSubcategory(){
+    var campo = document.getElementById('div-nueva-subcategoria')
+    campo.style.display = 'none'
+}
+function newSubsubcategory() {
+    var campo = document.getElementById('div-nueva-subsubcategoria')
+    campo.removeAttribute('style')
+}
+function cancelNewSubsubcategory(){
+    var campo = document.getElementById('div-nueva-subsubcategoria')
+    campo.style.display = 'none'
+}
+
+
 
