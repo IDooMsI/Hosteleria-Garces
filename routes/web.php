@@ -24,11 +24,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/index',function ()
-{
-    return view('index');
-});
-
 Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora");
 
 Route::get('/subcategories/categories/{id}', function ($id) {
@@ -51,6 +46,18 @@ Route::group(['middleware'=>'admin'],function(){
 
     Route::get('/publication/{id}/delete', 'PublicationController@destroy')->name('publication.delete');
     Route::resource('publication', 'PublicationController');
+
+    Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
+    Route::resource('category','CategoryController');
+
+    Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
+    Route::resource('category','CategoryController');
+
+    Route::get('/subcategory/{id}/delete', 'SubcategoryController@destroy')->name('subcategory.delete');
+    Route::resource('subcategory', 'SubcategoryController');
+
+    Route::get('/subsubcategory/{id}/delete', 'SubsubcategoryController@destroy')->name('subsubcategory.delete');
+    Route::resource('subsubcategory', 'SubsubcategoryController');
 
     //! Rutas de instalador.
     Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
