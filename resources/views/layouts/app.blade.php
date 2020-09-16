@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse col-10 col-md-7 p-0 ml-auto" id="navbarSupportedContent">
                     <ul class="navbar-nav justify-content-end w-100" style="font-size: 1rem">
                         <li class="nav-item dropdown mx-3">
-                            <a class="nav-link text-center" style="color:#000" href="">Empresa</a>
+                            <a class="nav-link text-center" style="color:#000" href="{{ route('home') }}">Empresa</a>
                         </li>
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link text-center" style="color:#000" href="">Nuestros Trabajos</a>
