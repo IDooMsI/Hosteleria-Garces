@@ -4,6 +4,7 @@ use App\Subcategory;
 use App\SubSubcategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\SubcategoryCollection as SubcategoryResource;
+use App\Http\Resources\SubsubcategoryCollection as SubsubcategoryResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/presupuesto','HomeController@showCalculadora')->name("calculadora")
 
 Route::get('/subcategories/categories/{id}', function ($id) {
     return new SubcategoryResource(Subcategory::where('category_id', $id)->get());
+});
+
+Route::get('subsubcategories/subcategories/{id}', function ($id) {
+    return new SubsubcategoryResource(Subsubcategory::where('subcategory_id', $id)->get());
 });
 
 Route::group(['middleware'=>'admin'],function(){
@@ -63,10 +68,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
     Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
     Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
-    Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');
 });
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::get('/tecnic', 'TecnicController@index')->name('tecnic.index');
     Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::resource('work','WorkController');
 });

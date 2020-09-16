@@ -77,7 +77,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="pb-3">
             @yield('content')
         </main>
@@ -101,9 +100,8 @@
             </div>
         </footer>
     </div>
-    <script src="{{asset('js/presupuesto.js')}}"></script>
+    @yield('scripts')
     <script src="{{asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/categories.js') }}"></script>
 </body>
 </html>
