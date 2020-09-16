@@ -45,7 +45,7 @@
               <th scope="col">Cant</th>
               <th scope="col">Total</th>
               <th scope="col">Descripción</th>
-            </thead>
+          </thead>
     </div>
           <tbody>
             <div class="col-12">
@@ -66,6 +66,7 @@
           <p><strong> TOTAL: <label id="total"></label>€</strong></p>
       </div>
   </div>
-  
-
-  @endsection
+@stop
+@section('scripts')
+  <script src="{{asset('js/presupuesto.js')}}"></script>
+@endsection

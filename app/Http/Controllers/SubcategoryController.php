@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Subcategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $vac = compact('categories');
-        return view('admin.category.index',$vac);
+        $subcategories = Subcategory::all();
+        $vac = compact('subcategories');
+        return view('admin.subcategory.index', $vac);
     }
 
     /**
@@ -26,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $categories = Category::all();
+        $vac = compact('categories');
+        return view('admin.subcategory.create',$vac);
     }
 
     /**
@@ -38,11 +41,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validator($request);
-        Category::create([
-            'name'=>$request['name'],
-            'description'=>$request['description']
+        Subcategory::create([
+            'name' => $request['name'],
+            'category_id' => $request['category']
         ]);
-        return redirect()->route('category.index')->with('notice', 'La categoria '. $request['name'] .' ha sido creada correctamente');
+        return redirect()->route('subcategory.index')->with('notice', 'La subcategoria ' . strtoupper($request['name']) . ' ha sido creada correctamente');
     }
 
     // /**
@@ -61,51 +64,53 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        $vac = compact('category');
-        return view('admin.category.edit',$vac);
+        $subcategory = Subcategory::find($id);
+        $categories = Category::all();
+        $vac = compact('subcategory','categories');
+        return view('admin.subcategory.edit', $vac);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validator($request);
-        $category=Category::find($id);
-        $category->update([
-            'name'=>$request->input('name'),
-            'description'=>$request->input('description')
-        ]); 
-        return redirect()->route('category.index')->with('notice', 'La categoria '.$category->name.' ha sido editada correctamente');
+        $subcategory = Subcategory::find($id);
+        $subcategory->update([
+            'name' => $request->input('name'),
+            'category_id' => $request->input('category')
+        ]);
+        return redirect()->route('subcategory.index')->with('notice', 'La subategoria ' . strtoupper($subcategory->name) . ' ha sido editada correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
-        $category->delete();
-        return redirect()->route('category.index')->with('notice', 'La categoria '.$category->name.' ha sido eliminada correctamente');
+        $subcategory = Subcategory::find($id);
+        $subcategory->delete();
+        return redirect()->route('subcategory.index')->with('notice', 'La subcategoria ' . strtoupper($subcategory->name) . ' ha sido eliminada correctamente');
     }
+
     public function validator(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:categories|string|max:50',
-            'description' => 'required|string|max:300'
+            'name' => 'required|unique:subcategories|string|max:50',
+            'category' => 'required'
         ];
         $message = [
             'required' => 'El campo es obligatorio.',

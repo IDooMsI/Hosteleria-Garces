@@ -55,7 +55,7 @@
                         </li>
                         @auth
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle mr-auto" style="color:black !important;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             @if(Auth::user()->admin == 333 || Auth::user()->tecnic == 222 )
@@ -77,7 +77,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="pb-3">
             @yield('content')
         </main>
@@ -101,9 +100,8 @@
             </div>
         </footer>
     </div>
-    <script src="{{asset('js/presupuesto.js')}}"></script>
+    @yield('scripts')
     <script src="{{asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/categories.js') }}"></script>
 </body>
 </html>
