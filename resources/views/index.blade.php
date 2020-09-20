@@ -39,166 +39,26 @@
     <div class="row justify-content-around w-100 m-0 marco">
         <h3 class="text-center col-12 font-italic"><strong>NUESTROS SERVICIOS</strong></h3>
         <div class="row justify-content-around w-100 mx-0">
-            <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
-            <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Botón 1
-                </button>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                          <a class="dropdown-item" href="#">Even More..</a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                </ul>
-                              </li>
-                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                          </ul>
-                        </li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-            </div>
-            <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
-                <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Botón 2
-                </button>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                          <a class="dropdown-item" href="#">Even More..</a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                </ul>
-                              </li>
-                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                          </ul>
-                        </li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-            </div>
-            <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
-                <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Botón 3
-                </button>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                          <a class="dropdown-item" href="#">Even More..</a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                </ul>
-                              </li>
-                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                          </ul>
-                        </li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-            </div>
-            <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
-                <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Botón 4
-                </button>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                          <a class="dropdown-item" href="#">Even More..</a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                </ul>
-                              </li>
-                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                          </ul>
-                        </li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-            </div>
-            <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
-                <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Botón 5
-                </button>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                          <a class="dropdown-item" href="#">Even More..</a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                </ul>
-                              </li>
-                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                          </ul>
-                        </li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-            </div>            
+          @foreach ($categories as $category)
+          <div class="dropdown col-md-2 col-sm-4 col-6 text-center mb-2">
+            <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ucfirst($category->name)}} </button>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                @foreach ($category->subcategories as $subcategory)
+                @if (count($subcategory->subsubcategories)>0)
+                  <li class="dropdown-submenu">
+                    <a  class="dropdown-item" href="#">{{Ucfirst($subcategory->name)}}</a>
+                    <ul class="dropdown-menu">
+                      @foreach ($subcategory->subsubcategories as $subsubcategory)
+                      <li class="dropdown-item"><a class="text-reset" href="#">{{Ucfirst($subsubcategory->name)}}</a></li>
+                      @endforeach
+                    </ul>
+                @else
+                    <li class="dropdown-item"><a class="text-reset" href="#">{{ucfirst($subcategory->name)}}</a></li>
+                @endif
+                  @endforeach
+              </ul>
+            </div> 
+          @endforeach             
         </div> 
     </div>
             <div class="row justify-content-around w-100 mx-0 marco">
