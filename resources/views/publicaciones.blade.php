@@ -3,7 +3,7 @@
 
 <div class="row mt-4">
     @foreach ($publications as $publication)
-    <div class="col-9 mx-auto" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="col-9 mx-auto my-4" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             @foreach ($publication->imagenes as $imagen)
             <div class="carousel-item active">
@@ -23,6 +23,8 @@
         </a>
     </div>
 </div>
+
+
 
 @endsection
 
