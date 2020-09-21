@@ -46,16 +46,18 @@
         <h3>Imagenes</h3>
     </div>
     @if(isset($images))
-    <div class="row">
+    <form class="row" action="{{route('publication.create')}}" method="get" enctype="multipart/form-data">
+        @csrf
         @foreach ($images as $image)
-        <div class="col-4">
-            <img class="w-100" src="{{ asset('/storage/'.$image->name) }}" alt="">    
+        <div class="col-4 text-center border">
+            <input type="checkbox" name="images[]" value="{{ $image->id }}"><img class="w-100" src="{{ asset('/storage/'.$image->name) }}" alt="">    
         </div>
         @endforeach
-    </div>
+        <div class="col-12 text-center mt-3">
+            <a href="{{ route('work.index') }}"><button class="btn btn-outline-dark">Volver</button></a>
+            <button class="btn btn-outline-dark">Crear Publicacion</button>
+        </div>
+    </form>
     @endif
-    <div class="col-12 text-center mt-3">
-        <a href="{{ route('work.index') }}"><button class="btn btn-outline-dark">Volver</button></a>
-    </div>
 </div>
 @endsection

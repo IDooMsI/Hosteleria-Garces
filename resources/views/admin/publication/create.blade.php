@@ -25,8 +25,17 @@
                 <small class="form-text text-muted"><b>Descripción de la publicación</b></small>
             </div>
             <div id="image" class="form-group col-12 col-md-6 col-lg-4">
-                <h4><label for="">Archivos</label></h4>
-                <input name="img[]" multiple id="myFile" class="form-control-file" type="file">
+                <h4><label for="">Imagenes</label></h4>
+                <div class="form-group mb-4 col-12 text-center">
+                    <a href="{{ route('work.index') }}"><button class="mx-2 btn btn-outline-dark rounded-pill" type="button">Desde Trabajos</button></a>
+                </div>
+                <div class="form-group m-0 col-12 text-center">
+                    <label for="">Desde Ordenador</label>
+                    <input name="img[]" multiple id="myFile" class="form-control-file" type="file">
+                    @error('img')
+                        <div id="error" class="alert alert-danger mx-auto col-11 col-sm-4 col-lg-12"><span>{{ $message }}</span></div>
+                    @enderror
+                </div>
             </div>
             <div class="form-group m-0 col-12 col-md-6 col-lg-4">
                 <label class="h4 pb-2" for="">Categoria</label>
