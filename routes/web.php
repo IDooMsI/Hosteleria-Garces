@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('trabajos', function () {
+    return view('publicaciones');
+})->name('trabajos');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -36,7 +40,7 @@ Route::get('subsubcategories/subcategories/{id}', function ($id) {
     return new SubsubcategoryResource(Subsubcategory::where('subcategory_id', $id)->get());
 });
 
-Route::get('/publicaciones/{nombre}', 'HomeController@showAllPublications');
+Route::get('/publicaciones/{nombre?}', 'HomeController@showAllPublications')->name('show-publicaciones');
 
 Route::group(['middleware'=>'admin'],function(){
     //! Rutas de administrador.
@@ -80,17 +84,17 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('work','WorkController');
 });
 
-    //! Variables golbales.
-    View::composer('index', function ($view) {
-        $categories = Category::all();
-        $view->with('categories', $categories);
-    });
-    View::composer('index', function ($view) {
-        $subcategories = Subcategory::all();
-        $view->with('subcategories', $subcategories);
-    });
-    View::composer('index', function ($view) {
-        $subsubcategories = SubSubcategory::all();
-        $view->with('subsubcategories', $subsubcategories);
-    });
+//! Variables golbales.
+View::composer('index', function ($view) {
+    $categories = Category::all();
+    $view->with('categories', $categories);
+});
+View::composer('index', function ($view) {
+    $subcategories = Subcategory::all();
+    $view->with('subcategories', $subcategories);
+});
+View::composer('index', function ($view) {
+    $subsubcategories = SubSubcategory::all();
+    $view->with('subsubcategories', $subsubcategories);
+});
 

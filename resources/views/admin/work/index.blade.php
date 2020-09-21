@@ -75,10 +75,10 @@
             </tr>
         </thead>
         <tbody>
+            @if(Auth::user()->admin == 333)
             @if (isset($works))
             @foreach($works as $work => $data)
-            <tr>
-                @if(Auth::user()->admin == 333)
+                <tr>
                     <th scope="row">{{$data->id}}</th>
                     <th>{{ $data->fc_number }}</th>
                     <th>{{ $data->price }}</th>
@@ -90,25 +90,28 @@
                     @endif
                     <th>{{ UcWords($data->client->name) }}</th>
                     <th><a href="{{ route('work.show',['work'=>$data->id]) }}"><span class="material-icons" title="Ver">search</span></a></th>
-                @else
-                    @if (isset($worksToDay))
-                        @foreach ($worksToDay as $data)
-                            @if (!$data->user)
-                                <th scope="row">{{$data->id}}</th>
-                                <th>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</th>
-                                <th>
-                                    @if ($data->user)
-                                        {{ UcWords($data->user->name) }}
-                                    @endif
-                                </th>
-                                <th>{{ UcWords($data->client->name) }}</th>
-                                <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
-                            @endif    
-                        @endforeach
-                    @endif
-                @endif    
-            </tr>
+                </tr>    
             @endforeach
+            @endif        
+            @endif
+            @if(Auth::user()->tecnic == 222)
+            @if (isset($worksToDay))
+            @foreach ($worksToDay as $data)
+                <tr>
+                @if (!$data->user)
+                    <th scope="row">{{$data->id}}</th>
+                    <th>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</th>
+                    <th>
+                        @if ($data->user)
+                            {{ UcWords($data->user->name) }}
+                        @endif
+                    </th>
+                    <th>{{ UcWords($data->client->name) }}</th>
+                    <th><a href="{{ route('work.edit',['work'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
+                </tr>    
+                @endif    
+            @endforeach
+            @endif
             @endif
         </tbody>
     </table>

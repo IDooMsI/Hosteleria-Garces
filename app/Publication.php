@@ -21,4 +21,14 @@ class Publication extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class);
+    }
+
+    public function subsubcategory()
+    {
+        return $this->belongsTo(Subsubcategory::class);
+    }
 }

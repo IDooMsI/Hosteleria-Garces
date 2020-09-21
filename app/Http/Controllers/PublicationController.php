@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Publication;
 use App\Category;
+use App\Image;
 use App\Subcategory;
 use App\SubSubcategory;
 
@@ -18,6 +19,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
+        session()->forget('images');
         $publications = Publication::all();
         $vac = compact('publications');
         return view('admin.publication.index',$vac);
@@ -28,8 +30,11 @@ class PublicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(?Request $request)
     {
+        if($request){
+            session()->push('images',$request['images']);
+        }
         $categories = DB::table('categories')->select('*')->orderBy('name')->get();
         $subcategories = DB::table('subcategories')->select('*')->orderBy('name')->get();
         $subsubcategories = DB::table('subsubcategories')->select('*')->orderBy('name')->get();
@@ -55,7 +60,7 @@ class PublicationController extends Controller
             $category = $newCategory->id;
         }else {
             $category = $request['category'];
-        };
+        }
 
         if ($request['new-subcategory']){
             $newSubcategory = Subcategory::create([
@@ -65,7 +70,7 @@ class PublicationController extends Controller
             $subcategory = $newSubcategory->id;
         }else {
             $subcategory = $request['subcategory'];
-        };
+        }
 
         if ($request['new-subsubcategory']){
             $newSubSubcategory = SubSubcategory::create([
@@ -75,18 +80,28 @@ class PublicationController extends Controller
             $subsubcategory = $newSubSubcategory->id;
         }else {
             $subsubcategory = $request['subsubcategory'];
-        };
+        }
 
         
         $publication = Publication::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'category' => $category,
-            'subcategory' => $subcategory,
-            'subsubcategory' => $subsubcategory,
+            'category_id' => $category,
+            'subcategory_id' => $subcategory,
+            'subsubcategory_id' => $subsubcategory,
             ]);
-
-        Publication::createImage($request, null ,$publication);
+        if($request['img']){
+            Publication::createImage($request, null ,$publication);
+        }else{
+            $images = session()->pull('images');
+            foreach ($images[1] as $data) {
+                var_dump($data);
+                $image = Image::find($data);
+                $image->update([
+                    'publication_id'=>$publication->id
+                ]);
+            }
+        }
 
         return redirect()->route('publication.index')->with('notice', 'La publicación '. Ucfirst($publication->name).' ha sido creada correctamente.');
     }
@@ -114,7 +129,7 @@ class PublicationController extends Controller
         $categories = DB::table('categories')->select('*')->orderBy('name')->get();
         $subcategories = DB::table('subcategories')->select('*')->orderBy('name')->get();
         $subsubcategories = DB::table('subsubcategories')->select('*')->orderBy('name')->get();
-        $vac = compact('publication','categories','subcategories','subsubsubcategories');
+        $vac = compact('publication','categories','subcategories','subsubcategories');
         return view('admin.publication.edit',$vac);
     }
 
@@ -175,6 +190,7 @@ class PublicationController extends Controller
     public function destroy($id)
     {
         $publication = Publication::find($id);
+        $publication->delete();
         return redirect()->route('publication.index')->with('notice', 'La publicación '. Ucfirst($publication->name).' ha sido eliminada correctamente.');
     }
 

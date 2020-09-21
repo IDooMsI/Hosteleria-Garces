@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('index');
     }
 
     public function showCalculadora()
@@ -32,9 +32,12 @@ class HomeController extends Controller
         return view('presupuesto',$vac);
     }
     
-    public function showAllPublications($nombre)
+    public function showAllPublications($id = null)
     {
-        $publications = Publication::where('subcategory', $nombre)->orwhere('subsubcategory',$nombre)->get();
+        $publications = Publication::all();
+        if ($id){
+            $publications = Publication::where('subcategory_id', $id)->orwhere('subsubcategory_id',$id)->get();
+        }
         $vac = compact('publications');
         return view('publicaciones',$vac);
     }

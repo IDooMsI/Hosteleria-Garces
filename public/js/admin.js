@@ -1,8 +1,8 @@
 var divFooter = document.getElementById("footer");
 var url = window.location;
-if (url.href.includes("admin") || url.href.includes("client") || url.href.includes("work")
-    || url.href.includes("job") || url.href.includes("subcategory") || url.href.includes("tecnic")
-    || url.href.includes("calculadora") || url.href.includes("publication"))
+if (url.href.includes("admin") || url.href.includes("client") || url.href.includes("work") ||
+    url.href.includes("job") || url.href.includes("category") || url.href.includes("subcategory") ||
+    url.href.includes("tecnic") || url.href.includes("calculadora") || url.href.includes("publication"))
 {
     divFooter.style.display = "none";
 }

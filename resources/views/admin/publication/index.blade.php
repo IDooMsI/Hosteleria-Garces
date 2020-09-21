@@ -36,16 +36,18 @@
                 <th scope="row">{{$data->id}}</th>
                 <th>{{ Ucfirst($data->name) }}</th>
                 <th>{{ Ucfirst($data->description)}}</th>
-                @if (isset($data->category))
+                @if (isset($data->category_id))
                 <th>{{ Ucfirst($data->category->name)}}</th>
                 @endif
-                @if (isset($data->subcategory))
+                @if (isset($data->subcategory_id))
                 <th>{{ Ucfirst($data->subcategory->name) }}</th>
                 @endif
-                @if ($data->subsubcategory)
+                @if ($data->subsubcategory_id)
                 <th>{{ Ucfirst($data->subsubcategory->name) }}</th>
+                @else
+                <th>No Corresponde</th>
                 @endif
-                 <th><a href="{{ route('publication.edit',['publication'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
+                <th><a href="{{ route('publication.edit',['publication'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('publication.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
             </tr>
             @endforeach

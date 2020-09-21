@@ -25,7 +25,7 @@
             </div>
         <div id="buttons" class="text-center mt-3 col-12">
             <button class="mx-2 btn btn-outline-dark rounded-pill" type="submit">Agregar</button>
-            <a href="{{route('client.index')}}"><button class="btn btn-outline-dark rounded-pill" type="button">Cancelar</button></a>
+            <a href="{{route('category.index')}}"><button class="btn btn-outline-dark rounded-pill" type="button">Cancelar</button></a>
         </div>
     </form>
    

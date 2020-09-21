@@ -52,6 +52,9 @@
              <div id="image" class="form-group col-12 col-md-6 col-lg-3">
                 <h4><label for="">Archivos</label></h4>
                 <input name="img[]" multiple id="myFile" class="form-control-file" type="file" required >
+                @error('img')
+                <div id="error" class="alert alert-danger mx-auto col-11 col-sm-4 col-lg-12"><span>{{ $message }}</span></div>
+                @enderror
             </div>
         </div>
         <div id="buttons" class="text-center col-12">

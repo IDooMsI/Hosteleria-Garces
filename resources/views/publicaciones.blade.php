@@ -1,31 +1,23 @@
 @extends('layouts.app')
 @section('content')
-
-<div class="row mt-4">
-    @foreach ($publications as $publication)
-    <div class="col-9 mx-auto my-4" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+<div class="row justify-content-around mt-3 w-100">
+    @if (count($publications) != 0)
+    @foreach ($publications as $publication)   
+    <div class="col-10 col-md-6 col-lg-4">
+        <img id="{{$publication->id}}" class="w-100" src="{{asset('storage/'.$publication->imagenes[0]->name)}}" alt="">
+        <div class="row ml-5" style="margin-left: 35% !important;">
             @foreach ($publication->imagenes as $imagen)
-            <div class="carousel-item active">
-                <img src="{{asset('storage/'.$imagen->name)}}" alt="">
-            </div>            
+            <img class="marco" id="{{$imagen->id}}" onclick="choice(this.id, {{$publication->id}})" style="width:20%; height:15%" src="{{asset('storage/'.$imagen->name)}}" alt="">
             @endforeach
         </div>
-        
-        @endforeach
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
+    @endforeach
+    @else
+    <div class="mt-5" style="height: 20rem">
+        <h1>No hay publicaciones para la categoria {{ request()->path() }}</h1>
+    </div>
+    @endif 
 </div>
-
-
-
 @endsection
 
 
