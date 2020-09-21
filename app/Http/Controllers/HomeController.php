@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Calculadora;
+use App\Publication;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('index');
     }
 
     public function showCalculadora()
@@ -30,5 +31,14 @@ class HomeController extends Controller
         $vac = compact('items'); 
         return view('presupuesto',$vac);
     }
-
+    
+    public function showAllPublications($id = null)
+    {
+        $publications = Publication::all();
+        if ($id){
+            $publications = Publication::where('subcategory_id', $id)->orwhere('subsubcategory_id',$id)->get();
+        }
+        $vac = compact('publications');
+        return view('publicaciones',$vac);
+    }
 }

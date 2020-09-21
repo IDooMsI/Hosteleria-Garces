@@ -43,7 +43,7 @@ class CalculadoraController extends Controller
             'description' => $request['description'],
         ]);
         
-        return redirect()->route('calculadora.index')->with('notice', 'El item se agrego correctamente');
+        return redirect()->route('calculator.index')->with('notice', 'El item se agrego correctamente');
     }
 
     /**

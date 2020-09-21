@@ -38,14 +38,13 @@
                 <button class="navbar-toggler ml-auto bg-ligth mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse col-10 col-md-7 p-0 ml-auto" id="navbarSupportedContent">
                     <ul class="navbar-nav justify-content-end w-100" style="font-size: 1rem">
                         <li class="nav-item dropdown mx-3">
-                            <a class="nav-link text-center" style="color:#000" href="">Empresa</a>
+                            <a class="nav-link text-center" style="color:#000" href="{{ route('home') }}">Empresa</a>
                         </li>
                         <li class="nav-item dropdown mx-3">
-                            <a class="nav-link text-center" style="color:#000" href="">Nuestros Trabajos</a>
+                            <a class="nav-link text-center" style="color:#000" href="{{ route('show-publicaciones') }}">Nuestros Trabajos</a>
                         </li>
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link text-center" style="color:#000" href="{{ route('calculadora') }}">Cotizar Trabajo</a>
@@ -55,7 +54,7 @@
                         </li>
                         @auth
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle mr-auto" style="color:black !important;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             @if(Auth::user()->admin == 333 || Auth::user()->tecnic == 222 )
@@ -77,7 +76,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="pb-3">
             @yield('content')
         </main>
@@ -101,7 +99,7 @@
             </div>
         </footer>
     </div>
-    <script src="{{asset('js/presupuesto.js')}}"></script>
+    @yield('scripts')
     <script src="{{asset('js/choice.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
 </body>
