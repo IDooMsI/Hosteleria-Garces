@@ -36,9 +36,15 @@
                 <th scope="row">{{$data->id}}</th>
                 <th>{{ Ucfirst($data->name) }}</th>
                 <th>{{ Ucfirst($data->description)}}</th>
-                <th>{{ Ucfirst($data->category)}}</th>
-                <th>{{ Ucfirst($data->subcategory) }}</th>
-                <th>{{ Ucfirst($data->subsubcategory) }}</th>
+                @if (isset($data->category))
+                <th>{{ Ucfirst($data->category->name)}}</th>
+                @endif
+                @if (isset($data->subcategory))
+                <th>{{ Ucfirst($data->subcategory->name) }}</th>
+                @endif
+                @if ($data->subsubcategory)
+                <th>{{ Ucfirst($data->subsubcategory->name) }}</th>
+                @endif
                  <th><a href="{{ route('publication.edit',['publication'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('publication.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
             </tr>

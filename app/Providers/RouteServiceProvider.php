@@ -31,11 +31,11 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = '/admin';
 
     /**
-     * The path to the "admin" route for your application.
+     * The path to the "tecnic" route for your application.
      *
      * @var string
      */
-    public const TECNIC = 'tecnic';
+    public const TECNIC = '/tecnic';
 
 
     /**

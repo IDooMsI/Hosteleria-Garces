@@ -5,6 +5,7 @@ use App\Subcategory;
 use App\SubSubcategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\SubcategoryCollection as SubcategoryResource;
+use App\Http\Resources\SubsubcategoryCollection as SubsubcategoryResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::get('/subcategories/categories/{id}', function ($id) {
     return new SubcategoryResource(Subcategory::where('category_id', $id)->get());
 });
 
+Route::get('subsubcategories/subcategories/{id}', function ($id) {
+    return new SubsubcategoryResource(Subsubcategory::where('subcategory_id', $id)->get());
+});
+
 Route::get('/publicaciones/{nombre}', 'HomeController@showAllPublications');
 
 Route::group(['middleware'=>'admin'],function(){
@@ -53,6 +58,15 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
     Route::resource('category','CategoryController');
 
+    Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
+    Route::resource('category','CategoryController');
+
+    Route::get('/subcategory/{id}/delete', 'SubcategoryController@destroy')->name('subcategory.delete');
+    Route::resource('subcategory', 'SubcategoryController');
+
+    Route::get('/subsubcategory/{id}/delete', 'SubsubcategoryController@destroy')->name('subsubcategory.delete');
+    Route::resource('subsubcategory', 'SubsubcategoryController');
+
     //! Rutas de instalador.
     Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
     Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
@@ -61,6 +75,7 @@ Route::group(['middleware'=>'admin'],function(){
 });
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::get('/tecnic', 'TecnicController@index')->name('tecnic.index');
     Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::resource('work','WorkController');
 });

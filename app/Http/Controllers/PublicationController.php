@@ -8,7 +8,6 @@ use App\Publication;
 use App\Category;
 use App\Subcategory;
 use App\SubSubcategory;
-use App\Image;
 
 class PublicationController extends Controller
 {
@@ -60,7 +59,8 @@ class PublicationController extends Controller
 
         if ($request['new-subcategory']){
             $newSubcategory = Subcategory::create([
-                'name' => $request['new-subcategory']
+                'name' => $request['new-subcategory'],
+                'category_id'=> $category,
             ]);
             $subcategory = $newSubcategory->id;
         }else {
@@ -69,7 +69,8 @@ class PublicationController extends Controller
 
         if ($request['new-subsubcategory']){
             $newSubSubcategory = SubSubcategory::create([
-                'name' => $request['new-subsubcategory']
+                'name' => $request['new-subsubcategory'],
+                'subcategory_id'=>$subcategory,
             ]);
             $subsubcategory = $newSubSubcategory->id;
         }else {
@@ -85,7 +86,8 @@ class PublicationController extends Controller
             'subsubcategory' => $subsubcategory,
             ]);
 
-        $this->createImage($request, $publication);
+        Publication::createImage($request, null ,$publication);
+
         return redirect()->route('publication.index')->with('notice', 'La publicación '. Ucfirst($publication->name).' ha sido creada correctamente.');
     }
 
@@ -153,10 +155,7 @@ class PublicationController extends Controller
         }else {
             $subsubcategory = $request['subsubcategory'];
         };
-
-
-        $this->createImage($request, $publication);
-
+        // $this->createImage($request, $publication); No eliminar, hacer una funcion para update
         $publication->update([
             'name' => $request['name'],
             'description' => $request['description'],
@@ -177,35 +176,6 @@ class PublicationController extends Controller
     {
         $publication = Publication::find($id);
         return redirect()->route('publication.index')->with('notice', 'La publicación '. Ucfirst($publication->name).' ha sido eliminada correctamente.');
-    }
-
-    public function createImage(Request $request, Publication $publication)
-        {
-        $position = 0;
-
-        if (isset($request['category'])) {
-            $category = ' categoria-'.$request['category'];
-        } if(isset($request['subcategory'])) {
-            $category = ' subcategoria-'.$request['subcategory'];
-        }elseif(isset($request['subsubcategory'])) {
-            $category = ' subsubcategoria-'.$request['subsubcategory'];
-        }
-        if (isset($request['img'])) {
-           foreach ($request['img'] as $key) {
-            $file = $key;
-            $name = $request['name'] . "-publicación N°" . $publication->id . $category ."-". $position++ . "." . $file->extension();
-            $path = 'publications/' . $name;
-            $path = $file->storeAs('publication', $name, 'public');
-            
-            // move_uploaded_file($file, "../public_html/storage/$path");
-            $image = Image::create([
-                'name' => $path,
-                'publication_id' => $publication->id,
-            ]); 
-        }
-            
-            return $image;
-        }
     }
 
     public function validator($request)
