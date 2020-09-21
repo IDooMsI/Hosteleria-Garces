@@ -22,7 +22,6 @@ class WorkController extends Controller
         $works = Work::all();
         $hoy = Carbon::today();
         $worksToDay = Work::whereDate('created_at', $hoy)->get();
-        // var_dump($worksToDay);
         $vac = compact('works','worksToDay');
         session()->forget('no-results');
         return view('admin.work.index', $vac);

@@ -190,6 +190,7 @@ class PublicationController extends Controller
     public function destroy($id)
     {
         $publication = Publication::find($id);
+        $publication->delete();
         return redirect()->route('publication.index')->with('notice', 'La publicación '. Ucfirst($publication->name).' ha sido eliminada correctamente.');
     }
 

@@ -47,7 +47,7 @@
                 @else
                 <th>No Corresponde</th>
                 @endif
-                 <th><a href="{{ route('publication.edit',['publication'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
+                <th><a href="{{ route('publication.edit',['publication'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('publication.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
             </tr>
             @endforeach
