@@ -12,6 +12,11 @@ class Publication extends Model
     
     public $guarded = [];
 
+    public function imagenes()
+    {
+        return $this->hasMany(Image::class, 'publication_id');
+    }
+    
     public function category()
     {
         return $this->belongsTo(Category::class);

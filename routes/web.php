@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Subcategory;
 use App\SubSubcategory;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::get('subsubcategories/subcategories/{id}', function ($id) {
     return new SubsubcategoryResource(Subsubcategory::where('subcategory_id', $id)->get());
 });
 
+Route::get('/publicaciones/{nombre}', 'HomeController@showAllPublications');
+
 Route::group(['middleware'=>'admin'],function(){
     //! Rutas de administrador.
     Route::get('/admin',function(){return view('admin.index');})->name('admin');
@@ -68,6 +71,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
     Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
     Route::post('reset/password', 'ForgotPasswordController@resetPassword')->name('password.reset');
+    Route::get('tecnic', 'TecnicController@index')->name('tecnic.index');
 });
 
 Route::group(['middleware'=>'auth'],function(){
@@ -75,4 +79,18 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/work/search', 'WorkController@search')->name('work.search');
     Route::resource('work','WorkController');
 });
+
+    //! Variables golbales.
+    View::composer('index', function ($view) {
+        $categories = Category::all();
+        $view->with('categories', $categories);
+    });
+    View::composer('index', function ($view) {
+        $subcategories = Subcategory::all();
+        $view->with('subcategories', $subcategories);
+    });
+    View::composer('index', function ($view) {
+        $subsubcategories = SubSubcategory::all();
+        $view->with('subsubcategories', $subsubcategories);
+    });
 
