@@ -32,7 +32,11 @@
             <tr>
                 <th scope="row">{{$data->id}}</th>
                 <th>{{ Ucfirst($data->name) }}</th>
-                <th>{{ Ucfirst($data->subcategory->name) }}</th>
+                @if ($data->subcategory)
+                    <th>{{ Ucfirst($data->subcategory->name) }}</th>
+                @else
+                    <th class="text-danger">No tiene. Por favor Asigne una</th>
+                @endif
                 <th><a href="{{ route('subsubcategory.edit',['subsubcategory'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('subsubcategory.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
             </tr>
