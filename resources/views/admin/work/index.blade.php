@@ -88,7 +88,11 @@
                     @else
                         <th>{{ Ucfirst('trabajo no finalizado') }}</th>
                     @endif
-                    <th>{{ UcWords($data->client->name) }}</th>
+                    @if (isset($data->client))
+                        <th>{{ UcWords($data->client->name) }}</th>
+                    @else
+                        <th>{{ Ucfirst('trabajo no finalizado') }}</th>
+                    @endif
                     <th><a href="{{ route('work.show',['work'=>$data->id]) }}"><span class="material-icons" title="Ver">search</span></a></th>
                 </tr>    
             @endforeach
