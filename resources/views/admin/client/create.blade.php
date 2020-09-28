@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group m-0 col-12 col-md-6 col-lg-6">
                     <label for="">Localidad</label>
-                    <select class="form-control mb-1" name="locality">
+                    <select class="form-control mb-1" name="locality" required>
                         <option value="">Elija una localidad</option>
                         @if(isset($localities))
                             @foreach($localities as $locality)
