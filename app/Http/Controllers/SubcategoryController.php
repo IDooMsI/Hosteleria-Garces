@@ -84,13 +84,15 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validator($request);
         $subcategory = Subcategory::find($id);
+        if($subcategory->name != $request->input('name')){
+            $this->validator($request);
+        }
         $subcategory->update([
             'name' => $request->input('name'),
             'category_id' => $request->input('category')
         ]);
-        return redirect()->route('subcategory.index')->with('notice', 'La subategoria ' . strtoupper($subcategory->name) . ' ha sido editada correctamente');
+        return redirect()->route('subcategory.index')->with('notice', 'La subcategoria ' . Ucfirst($subcategory->name) . ' ha sido editada correctamente');
     }
 
     /**
@@ -103,7 +105,7 @@ class SubcategoryController extends Controller
     {
         $subcategory = Subcategory::find($id);
         $subcategory->delete();
-        return redirect()->route('subcategory.index')->with('notice', 'La subcategoria ' . strtoupper($subcategory->name) . ' ha sido eliminada correctamente');
+        return redirect()->route('subcategory.index')->with('notice', 'La subcategoria ' . Ucfirst($subcategory->name) . ' ha sido eliminada correctamente');
     }
 
     public function validator(Request $request)
