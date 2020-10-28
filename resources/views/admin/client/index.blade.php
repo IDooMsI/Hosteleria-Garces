@@ -75,9 +75,17 @@
                 <th>{{ Ucfirst($data->lastname) }}</th>
                 <th>{{ $data->cuit }}</th>
                 <th>{{ $data->phone }}</th>
+                @if ($data->address)
                 <th>{{ Ucfirst($data->address->street) }}</th>
                 <th>{{ $data->address->number }}</th>
+                @else
+                <th colspan="2">No tiene direccion</th>
+                @endif
+                @if ($data->address->locality)
                 <th>{{ Ucfirst($data->address->locality->name) }}</th>
+                @else
+                <th>No tiene Localidad</th>
+                @endif
                 <th><a href="{{ route('client.edit',['client'=>$data]) }}"><span class="material-icons" title="Editar">edit</span></a></th>
                 <th><a href="{{ route('client.delete',['id'=>$data->id]) }}"><span class="material-icons" title="Eliminar">delete_outline</span></a></th>
                 <th><a href="{{ route('work.asignee',['id'=>$data->id]) }}" title="Crear trabajo"><span class="material-icons">assignment</span></a></th>
