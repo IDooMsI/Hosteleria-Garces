@@ -18,7 +18,7 @@
             </div>
            <div class="form-group m-0 col-12 col-md-6 col-lg-4">
                 <label class="h4 pb-2" for="">Categoria</label>
-                <select class="form-control mb-1" name="category">
+                <select class="form-control mb-1" name="subcategory">
                     <option value="">Elija una categoria</option>
                     @if(isset($subcategories))
                         @foreach($subcategories as $subcategory)
