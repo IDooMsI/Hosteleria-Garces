@@ -90,7 +90,7 @@ class SubsubcategoryController extends Controller
             'name' => $request->input('name'),
             'subcategory_id' => $request->input('subcategory')
         ]);
-        return redirect()->route('subsubcategory.index')->with('notice', 'La subategoria secundaria ' . Ucfirst($subsubcategory->name) . ' ha sido editada correctamente');
+        return redirect()->route('subsubcategory.index')->with('notice', 'La subcategoria secundaria ' . Ucfirst($subsubcategory->name) . ' ha sido editada correctamente');
     }
 
     /**
