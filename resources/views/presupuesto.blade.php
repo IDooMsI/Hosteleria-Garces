@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-12">
-    <h3 class="text-center">PLANTILLA MEDICIÓN AIRE ACONDICIONADO</h3>
+    <h3 class="text-center">INSTALACIONES DE CONDUCTO</h3>
     </div>
     @foreach ($items as $item)
     @if ($item->id == 1)
@@ -23,15 +23,14 @@
                 <th><label id="cantidadBase" id="{{$item->id}}">1</label></th>
                 <th>
                     <ul>
-                        <li>Toma de medidas previa en caso de contratación de instalación.</li>
-                        <li>Desmontaje y montaje de flaso techo existente.</li>
-                        <li>Instalación equipo interior y exterior.</li>
-                        <li>Soportes necesarios para las unidades interior y exterior.</li>
-                        <li>Prueba de estanqueidad o conexión entre equipos hasta 10 metros (línea frigorífica y eléctrica de interconexión).</li>
-                        <li>Conexión/emboquillado a conductos existentes</li>
-                        <li>Conexión a desagüe existente.</li>
-                        <li>Conexión (línea eléctrica vista con canaleta) a termostato.</li>
-                        <li>Puesta en funcionamiento.</li>
+                      <li>DESMONTAJE Y MONTAJE DE FALSO DESMONTABLE</li>
+                      <li>INSTALACIÓN DE UNIDAD INTERIOR Y EXTERIOR EN SITIOS DE FÁCIL ACCESO</li>
+                      <li>SOPORTES Y AMORTIGUADORES ANTIVIBRATORIOS</li>
+                      <li>EMBOQUE DE FIBRA DESDE EQUIPO A CONDUCTO (MAX 0,80 CM)</li>
+                      <li>COLOCACIÓN DE TERMOSTATO DE PARED EN SU CAJA PREVISTA</li>
+                      <li>CONEXIÓN A DESAGÜES EXISTENTES</li>
+                      <li>PUESTA EN MARCHA, REGULACIÓN DE CAUDAL Y CONTROL GENERAL DE EQUIPOS</li>
+                      <li>CERTIFICADO DE EMPRESA INSTALADORA AUTORIZADA</li>
                     </ul>
                 </th>
             </tr>
@@ -64,8 +63,12 @@
           </tbody>
         </table>
           <p><strong> TOTAL: <label id="total"></label>€</strong></p>
+          <div class="row justify-content-center">
+            <h3 class="text-center col-12">INSTALACIONES DE SPLITS</h3>
+            <a href="{{asset('/storage/CONDICIONES-SPLITS-2020.pdf')}}" download><button class="mb-3 btn btn-success rounded-pill" type="button">DESCARGAR PRESUPUESTO SPLITS</button></a>
+          </div>
       </div>
-  </div>
+    </div>
 @stop
 @section('scripts')
   <script src="{{asset('js/presupuesto.js')}}"></script>
