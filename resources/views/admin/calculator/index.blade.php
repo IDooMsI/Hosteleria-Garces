@@ -42,5 +42,12 @@
             @endif
         </tbody>
     </table>
+        <form class="row justify-content-center mx-auto mb-3 col-12 col-md-8 col-lg-6 col-xl-4" action="{{route('calculator.add-new-list')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+            @csrf
+            @method('post')
+            <h5 class="col-12 my-1 text-center">Nueva Lista</h5>
+            <input class="col-9 mx-auto" required type="file" name="file">
+            <input class="my-2 mx-auto col-4 btn btn-outline-dark" type="submit" value="Agregar">
+        </form>
 </div>
 @endsection
