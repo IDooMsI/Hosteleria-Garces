@@ -78,8 +78,10 @@ class PublicationController extends Controller
                 'subcategory_id'=>$subcategory,
             ]);
             $subsubcategory = $newSubSubcategory->id;
-        }else {
+        }else if(isset($request['subsubcategory'])) {
             $subsubcategory = $request['subsubcategory'];
+        }else{
+            $subsubcategory = null;
         }
 
         

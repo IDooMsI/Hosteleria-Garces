@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('presupuesto',$vac);
     }
     
-    public function showAllPublications($id = null)
+    public function showAllPublications($id = null )
     {
         $publications = Publication::all();
         if ($id){

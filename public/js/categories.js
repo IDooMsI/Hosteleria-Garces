@@ -34,7 +34,7 @@ function subcategorias(id) {
                     html += "<option id='" + valor.id + "' value='" + valor.id + "'>" + valor.name + "</option>";
                 });
             } else {
-                html = "<option>No hay valores</option>";
+                html = null
             }
             selectSubsubcategorias.innerHTML = html;
         };
