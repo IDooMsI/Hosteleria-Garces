@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="row justify-content-around mt-3 w-100">
-    @if (count($publications) != 0)
+    @if (count($publications) > 0)
     @foreach ($publications as $publication)   
     <div class="col-10 col-md-6 col-lg-4">
         <img id="{{$publication->id}}" class="w-100" src="{{asset('storage/'.$publication->imagenes[0]->name)}}" alt="">
