@@ -40,7 +40,7 @@ Route::get('subsubcategories/subcategories/{id}', function ($id) {
     return new SubsubcategoryResource(Subsubcategory::where('subcategory_id', $id)->get());
 });
 
-Route::get('/publicaciones/{nombre?}', 'HomeController@showAllPublications')->name('show-publicaciones');
+Route::get('/publicaciones/{id?}', 'HomeController@showAllPublications')->name('show-publicaciones');
 
 Route::group(['middleware'=>'admin'],function(){
     //! Rutas de administrador.
