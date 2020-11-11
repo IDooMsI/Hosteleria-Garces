@@ -101,5 +101,14 @@ class CalculadoraController extends Controller
         $calculadora->delete();
         return redirect()->route('calculator.index')->with('notice', 'El item se elimino correctamente');
  
+    
+    }
+
+    public function newList(Request $request)
+    {
+        $file = $request['file'];
+        $name = "CONDICIONES-SPLITS-2020". "." . $file->extension();
+        $file->storeAs('public',$name);
+        return redirect()->route('calculadora')->with('notice', 'La lista se cargo correctamente');
     }
 }

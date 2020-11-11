@@ -71,6 +71,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/subsubcategory/{id}/delete', 'SubsubcategoryController@destroy')->name('subsubcategory.delete');
     Route::resource('subsubcategory', 'SubsubcategoryController');
 
+    Route::post('/nuevalista','CalculadoraController@newList')->name('calculator.add-new-list');
+
     //! Rutas de instalador.
     Route::get('trabajo/{id}/formulario', 'WorkController@update')->name('work.editar');
     Route::get('reset/password', 'ForgotPasswordController@forgotPassword')->name('password.forgot');
@@ -84,7 +86,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('work','WorkController');
 });
 
-//! Variables golbales.
+//! Variables globales.
 View::composer('index', function ($view) {
     $categories = Category::all();
     $view->with('categories', $categories);
